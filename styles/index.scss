@@ -1,0 +1,148 @@
+@use "../Placeholders/_Vars" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=BBH+Bartle&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Space+Grotesk:wght@300..700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: roboto;
+}
+* i {
+  font-size: 17px;
+}
+
+body {
+  height: 10000px;
+}
+
+.top-header {
+  width: 100%;
+  background-color: $cl-pry;
+
+  .top-header-container {
+    max-width: 1140px;
+    width: 100%;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+
+    .phone-number {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+
+      i {
+        color: #fff;
+      }
+
+      p {
+        font-size: 13px;
+        color: #fff;
+        font-size: 13px;
+        font-weight: bold;
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+
+      a {
+        margin: 0px;
+        color: #fff;
+        font-weight: 600;
+        font-size: 13px;
+        opacity: 0.7;
+        cursor: pointer;
+        transition: 0.21s;
+        text-decoration: none;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+      select {
+        width: 40px;
+        height: 40px;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+header {
+  width: 100%;
+  position: sticky;
+  background-color: $cl-sec;
+  top: 0;
+}
+
+.header-container {
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+
+  .logo-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+
+    img {
+      object-fit: cover;
+      width: 70px;
+      height: 70px;
+      opacity: 0.8;
+    }
+  }
+
+  .navigation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+
+    #navs i {
+      color: #fff !important;
+    }
+
+    div {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 15px;
+      width: 100px;
+      cursor: pointer;
+
+      i {
+        background-color: transparent;
+        padding: 0px !important;
+        color: #000;
+      }
+    }
+
+    h4 {
+      font-size: 15px;
+    }
+    i {
+      font-size: $tx-med;
+      background-color: $cl-pry;
+      color: #fff;
+      padding: 15px 20px !important;
+      border-radius: 10px;
+    }
+  }
+}

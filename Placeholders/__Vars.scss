@@ -1,0 +1,41 @@
+$tx-sm: 14px;
+$tx-med: 18px;
+$tx-x: 24px;
+$tx-xl: 32px;
+
+// ------------------------colors------------------------
+$cl-pry: #ec5e2a;
+$cl-sec: #f2f0f0;
+
+// -----------------------pre-build------------------------------
+.btn {
+  padding: 10px 18px;
+  border: none;
+  outline: none;
+  box-shadow: 0px 0px 5px 0px $cl-sec;
+  border-radius: 15px;
+  cursor: pointer;
+  opacity: 0.8;
+
+  &:hover {
+    scale: 1.05;
+    opacity: 1;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+}
+
+.primary-btn {
+  background-color: $cl-pry;
+  max-width: 100px;
+  color: #fff;
+  opacity: 0.9 !important;
+}
+.secondary-btn {
+  background-color: #fff !important;
+  width: 100px;
+  color: #000;
+  transition: all linear 0.1s;
+}
