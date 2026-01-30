@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/index.css" />
+
     <title>Online Market</title>
   </head>
   <body>
@@ -16,7 +17,6 @@
         <ul>
           <a href="">სავაჭრო პოლიტიკა</a>
           <a href="">განვადება</a>
-          <a href="">კარიერა</a>
           <a href="">ფილიალები</a>
           <select name="lang">
             <option value="">ENG</option>
@@ -29,12 +29,16 @@
       <div class="header-container">
         <div class="logo-wrapper">
           <img src="./assets/58596977_9391707.png" alt="NOT FOUND!" />
-          <h2>Zima</h2>
+          <h2>SwiftBuy</h2>
         </div>
         <nav class="navigation">
           <div id="navs" class="nav-item btn primary-btn">
-            <i class="fa-solid fa-align-center"></i>
+            <i class="fa-solid fa-grip"></i>
             <h4>ნავიგაცია</h4>
+          </div>
+          <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input id="search-bar" placeholder="ძიება" type="text" />
           </div>
           <div id="cart" class="cart btn secondary-btn">
             <i class="fa-solid fa-cart-shopping"></i>
@@ -48,7 +52,239 @@
         </nav>
       </div>
     </header>
-    >
+    <main>
+      <div class="main-container">
+        <section class="hero">
+          <ul>
+            <div>
+              <i class="fa-solid fa-mobile-screen"></i>
+              <a href="">მობილური</a>
+            </div>
+            <div>
+              <i class="fa-solid fa-laptop"></i>
+              <a href="">ლეპტოპი</a>
+            </div>
+
+            <div>
+              <i class="fa-solid fa-tv"></i>
+              <a href="">ტელევიზორი</a>
+            </div>
+            <div>
+              <i class="fa-solid fa-desktop"></i>
+              <a href="">კომპიუტერი (PC)</a>
+            </div>
+            <div>
+              <i class="fa-solid fa-microchip"></i>
+              <a href="">აქსესუარები</a>
+            </div>
+            <div>
+              <i class="fa-solid fa-desktop"></i>
+              <a href="">კომპიუტერი (PC)</a>
+            </div>
+            <div>
+              <i class="fa-solid fa-microchip"></i>
+              <a href="">აქსესუარები</a>
+            </div>
+          </ul>
+
+          <div class="image-carousel">
+            <button class="arrow left">&#10094;</button>
+
+            <div class="carousel-track">
+              <img src="./assets/pc-banner.jpg" />
+              <img src="./assets/pc-banner.jpg" />
+              <img src="./assets/pc-banner.jpg" />
+            </div>
+
+            <button class="arrow right">&#10095;</button>
+          </div>
+        </section>
+
+        <section id="product-cards" class="product-cards">
+          <h2>სულსწრაფი შეთავაზებები</h2>
+
+          <div class="arrow left">&#10094;</div>
+          <div id="product-carousel" class="item-carousel-warpper">
+            <div class="carousel-item">
+              <div class="image-wrapper">
+                <img
+                  src="./assets/—Pngtree—apple - iphone 11 pro_14745655.png"
+                  alt=""
+                />
+              </div>
+              <div class="content">
+                <button class="best-price">Best Price</button>
+                <div class="price-wrapper">
+                  <label class="price" for="">2299 $</label>
+                  <p>2131</p>
+                </div>
+                <label for="">Google Pixel 9 Pro XL 16/128GB Obsidian</label>
+                <div class="button-wrapper">
+                  <button class="add-to-cart-btn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    დამატება
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="image-wrapper">
+                <img
+                  src="./assets/—Pngtree—apple - iphone 11 pro_14745655.png"
+                  alt=""
+                />
+              </div>
+              <div class="content">
+                <button class="best-price">Best Price</button>
+                <div class="price-wrapper">
+                  <label class="price" for="">2299 $</label>
+                  <p>2131</p>
+                </div>
+                <label for="carousel-item"
+                  >Google Pixel 9 Pro XL 16/128GB Obsidian</label
+                >
+                <div class="button-wrapper">
+                  <button class="add-to-cart-btn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    დამატება
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="image-wrapper">
+                <img
+                  src="./assets/—Pngtree—apple - iphone 11 pro_14745655.png"
+                  alt=""
+                />
+              </div>
+              <div class="content">
+                <button class="best-price">Best Price</button>
+                <div class="price-wrapper">
+                  <label class="price" for="">2299 $</label>
+                  <p>2131</p>
+                </div>
+                <label for="carousel-item"
+                  >Google Pixel 9 Pro XL 16/128GB Obsidian</label
+                >
+                <div class="button-wrapper">
+                  <button class="add-to-cart-btn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    დამატება
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="image-wrapper">
+                <img
+                  src="./assets/—Pngtree—apple - iphone 11 pro_14745655.png"
+                  alt=""
+                />
+              </div>
+              <div class="content">
+                <button class="best-price">Best Price</button>
+                <div class="price-wrapper">
+                  <label class="price" for="">2299 $</label>
+                  <p>2131</p>
+                </div>
+                <label for="carousel-item"
+                  >Google Pixel 9 Pro XL 16/128GB Obsidian</label
+                >
+                <div class="button-wrapper">
+                  <button class="add-to-cart-btn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    დამატება
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="image-wrapper">
+                <img
+                  src="./assets/—Pngtree—apple - iphone 11 pro_14745655.png"
+                  alt=""
+                />
+              </div>
+              <div class="content">
+                <button class="best-price">Best Price</button>
+                <div class="price-wrapper">
+                  <label class="price" for="">2299 $</label>
+                  <p>2131</p>
+                </div>
+                <label for="carousel-item"
+                  >Google Pixel 9 Pro XL 16/128GB Obsidian</label
+                >
+                <div class="button-wrapper">
+                  <button class="add-to-cart-btn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    დამატება
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="image-wrapper">
+                <img
+                  src="./assets/—Pngtree—apple - iphone 11 pro_14745655.png"
+                  alt=""
+                />
+              </div>
+              <div class="content">
+                <button class="best-price">Best Price</button>
+                <div class="price-wrapper">
+                  <label class="price" for="">2299 $</label>
+                  <p>2131</p>
+                </div>
+                <label for="carousel-item"
+                  >Google Pixel 9 Pro XL 16/128GB Obsidian</label
+                >
+                <div class="button-wrapper">
+                  <button class="add-to-cart-btn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    დამატება
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="image-wrapper">
+                <img
+                  src="./assets/—Pngtree—apple - iphone 11 pro_14745655.png"
+                  alt=""
+                />
+              </div>
+              <div class="content">
+                <button class="best-price">Best Price</button>
+                <div class="price-wrapper">
+                  <label class="price" for="">2299 $</label>
+                  <p>2131</p>
+                </div>
+                <label for="carousel-item"
+                  >Google Pixel 9 Pro XL 16/128GB Obsidian</label
+                >
+                <div class="button-wrapper">
+                  <button class="add-to-cart-btn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    დამატება
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="arrow right">&#10095;</div>
+        </section>
+      </div>
+    </main>
+
+    <script src="./script/package.js"></script>
 
     <script
       src="https://kit.fontawesome.com/c0c94e5aa2.js"
