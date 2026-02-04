@@ -27,33 +27,3 @@ function slidePages() {
 }
 slidePages();
 ///////////////////////////
-// nextBtn
-// prevBtn
-
-const cardSection = document.getElementById(`product-cards`);
-const productCarusel = document.getElementById(`product-carousel`);
-let productItems = Array.from(document.querySelectorAll(`.carousel-item`));
-const nextProduct = cardSection.querySelector(`.arrow.right`);
-const prevProduct = cardSection.querySelector(`.arrow.left`);
-let total = 0;
-let count = 5;
-
-nextProduct.addEventListener("click", () => {
-  count++;
-  total -= 220;
-  if (count === productItems.length) {
-    total = 0;
-    count = 5;
-  }
-  productCarusel.style.transform = `translateX(${total}px)`;
-});
-prevProduct.addEventListener("click", () => {
-  if (count === 5) {
-    total = 0;
-    count = 5;
-    return;
-  }
-  total += 220;
-  count--;
-  productCarusel.style.transform = `translateX(${total}px)`;
-});

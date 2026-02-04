@@ -123,7 +123,7 @@ header {
   width: calc(100% - 40px);
   padding: 0px 20px;
   position: sticky;
-  z-index: 2;
+  z-index: 3;
   background: transparent;
   background-color: #f2f0f0;
   top: 0;
@@ -220,6 +220,7 @@ main {
 }
 main .arrow {
   position: absolute;
+  z-index: 1 !important;
   top: 50%;
   transform: translateY(-50%);
   background: rgba(0, 0, 0, 0.5);
@@ -347,14 +348,15 @@ main .main-container {
 .product-cards h2 {
   font-weight: bold;
 }
-.product-cards .item-carousel-warpper {
+.product-cards .item-carousel-product {
   width: 100%;
   display: flex;
   flex-direction: row;
+  gap: 20px;
   transition: all 0.3s;
 }
 .product-cards .carousel-item {
-  min-width: 180px;
+  min-width: 190px;
   cursor: pointer;
   transition: all 0.1s linear;
 }
@@ -368,7 +370,8 @@ main .main-container {
   gap: 10px;
 }
 .product-cards .carousel-item .content label {
-  font-weight: 600;
+  height: 50px;
+  font-weight: 400;
 }
 .product-cards .carousel-item .content .price-wrapper {
   display: flex;
@@ -377,6 +380,8 @@ main .main-container {
   gap: 15px;
 }
 .product-cards .carousel-item .content .price-wrapper .price {
+  height: -moz-fit-content !important;
+  height: fit-content !important;
   font-weight: bold;
   color: #ec5e2a;
 }
@@ -393,7 +398,103 @@ main .main-container {
   align-items: center;
   padding: 15px 0px;
   width: 100%;
+  height: 100px;
 }
 .product-cards .image-wrapper img {
-  width: 60%;
+  width: 65%;
+  height: 100%;
+}
+
+.categories {
+  margin-top: 5%;
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(253, 91, 76, 0.2);
+  padding: 30px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.categories .arrow {
+  top: 50%;
+  opacity: 0.8;
+  position: absolute;
+}
+.categories .arrow.left {
+  left: 0;
+}
+.categories .arrow.right {
+  right: 0;
+}
+.categories #categories-item-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  position: relative;
+  transition: all 0.3s;
+}
+.categories .categories-items {
+  min-width: 370px;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+.categories .categories-items img {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  right: 0px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 200px;
+  height: 120px;
+}
+.categories .categories-items .box {
+  width: 100%;
+  height: 70px;
+  background-color: #fd5b4c;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.categories .categories-items .box button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  background-color: #000;
+  margin-left: 15px;
+  padding: 5px 10px;
+}
+.categories .categories-items .categories-content {
+  background-color: rgba(253, 91, 76, 0.5);
+  height: 70%;
+}
+
+#laptops-only {
+  width: 100%;
+  position: relative;
+  height: 300px;
+}
+#laptops-only #item-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+#laptops-only #item-wrapper .carousel-item {
+  min-width: 190px;
+}
+#laptops-only #item-wrapper .carousel-item img {
+  width: 100%;
+}
+#laptops-only .arrow {
+  position: absolute;
 }/*# sourceMappingURL=index.css.map */
