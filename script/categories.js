@@ -24,18 +24,20 @@ async function addCategorie() {
 }
 
 //  <---------------------------Categories-Slider------------------------------------>
+
+addCategorie();
 function categorieSlider() {
   const categorie = document.getElementById(`categories`);
   let categorieArrowLeft = categorie.getElementsByClassName(`arrow left`);
   let categorieArrowRight = categorie.getElementsByClassName(`arrow right`);
   let categoriesItems = categorie.getElementsByClassName(`categories-items`);
 
-  let count = 3;
+  let count = 1;
   let total = 0;
 
   categorieArrowLeft[0].addEventListener("click", () => {
-    if (count <= 3) {
-      count = 3;
+    if (count <= 1) {
+      count = 1;
       total = 0;
       categoriesElement.style.transform = `translateX(${total}px)`;
     } else {
@@ -47,7 +49,7 @@ function categorieSlider() {
 
   categorieArrowRight[0].addEventListener("click", () => {
     if (count === categoriesItems.length) {
-      count = 3;
+      count = 1;
       total = 0;
       categoriesElement.style.transform = `translateX(-${total}px)`;
     } else {

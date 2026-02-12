@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/index.css" />
+    <link rel="stylesheet" href="navigation.css" />
+    <title>Navigaton</title>
+  </head>
+  <body>
+    <div class="top-header">
+      <div class="top-header-container">
+        <div class="phone-number">
+          <i class="fa-solid fa-phone"></i>
+          <p>*7007 / +995 (32) 2 60 30 60</p>
+        </div>
+        <ul>
+          <a href="">სავაჭრო პოლიტიკა</a>
+          <a href="">განვადება</a>
+          <a href="">ფილიალები</a>
+        </ul>
+      </div>
+    </div>
+    <header>
+      <div class="header-container">
+        <div class="logo-wrapper">
+          <img src="../assets/58596977_9391707.png" alt="NOT FOUND!" />
+          <h2>SwiftBuy</h2>
+        </div>
+        <nav class="navigation">
+          <div class="cart btn secondary-btn">
+            <div class="cart-icon-wrapper">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <h4>კალათა</h4>
+            </div>
+            <span id="cart" class="cart-i">
+              <span id="cart-wrapper" class="cart-wrapper">
+                <span class="cart-head">
+                  <p>კალათა</p>
+                  <span class="amount-wrapper">
+                    <p id="cart-amount">0</p>
+                    <p>პროდუქტი</p>
+                  </span>
+                </span>
+                <span id="cart-body" class="cart-body">
+                  <img src="./assets/emptybag.svg" alt="" />
+                </span>
+                <span class="cart-bottom">
+                  <span class="total-amount">
+                    <p>ჯამური ფასი:</p>
+                    <p id="cart-total">0$</p>
+                  </span>
+                  <a href="../../cart/cart.html">
+                    <button class="primary-btn btn">კალათაში გადავლა</button>
+                  </a>
+                </span>
+              </span>
+            </span>
+          </div>
+          <i id="close" class="close fa-solid fa-x"></i>
+          <div class="sign-in login btn secondary-btn">
+            <i class="fa-solid fa-user"></i>
+            <h4>შესვლა</h4>
+            <div class="form-cover forms-cover">
+              <span class="login login-model show">
+                <form class="login-form" action="">
+                  <span class="switch-forms-container">
+                    <span class="switch-forms">
+                      <p class="logini">შესვლა</p>
+                      <p class="registeri">რეგისტრაცია</p>
+                    </span>
+                    <div class="line-container">
+                      <div class="line"></div>
+                    </div>
+                  </span>
+                  <h2>შესვლა</h2>
+                  <input class="email" type="text" placeholder="ელ. ფოსტა" />
+                  <input
+                    class="password"
+                    type="password"
+                    placeholder="პაროლი"
+                  />
+                  <p id="forgot-password">
+                    დაგავიწყდა პაროლი?
+                    <a class="forgot-passwork-link" href="">Click</a>
+                  </p>
+                  <button class="primary-btn btn">შესვლა</button>
+                </form>
+              </span>
+              <span class="register register-model">
+                <form class="register-form" action="">
+                  <span class="switch-forms-container">
+                    <span class="switch-forms">
+                      <p class="logini">შესვლა</p>
+                      <p class="registeri">რეგისტრაცია</p>
+                    </span>
+                    <div class="line-container">
+                      <div class="line"></div>
+                    </div>
+                  </span>
+                  <h2>რეგისტრაცია</h2>
+                  <input
+                    required
+                    class="name"
+                    type="text"
+                    placeholder="სახელი"
+                  />
+                  <input required class="age" type="text" placeholder="ასაკი" />
+                  <input
+                    required
+                    class="email"
+                    type="email"
+                    placeholder="ელ. ფოსტა"
+                  />
+                  <input
+                    required
+                    class="phone"
+                    value="+995"
+                    type="tel"
+                    placeholder="ელ. ტელეფონი"
+                  />
+                  <input
+                    required
+                    class="password"
+                    type="password"
+                    placeholder="პაროლი"
+                  />
+                  <p id="forgot-password">
+                    დაგავიწყდა პაროლი?
+                    <a id="forgot-passwork-link" href="">Click</a>
+                  </p>
+                  <button class="primary-btn btn">რეგისტრაცია</button>
+                </form>
+              </span>
+            </div>
+          </div>
+          <i class="fa-solid fa-calculator btn primary-btn"></i>
+        </nav>
+      </div>
+    </header>
+
+    <section id="navigate" class="navigate">
+      <aside class="sidebar">
+        <h2>გაფილტრე პროდუქტი 🧮</h2>
+
+        <div class="filter-block">
+          <label>ძიება</label>
+          <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              id="navigate-search"
+              type="text"
+              placeholder="პროდუქტის ძიება..."
+            />
+          </div>
+        </div>
+
+        <div class="filter-block">
+          <label>ფასი</label>
+          <div class="price-range">
+            <div class="range-values">
+              <span id="min-val">₾5</span>
+              <span style="color: orange" id="current-range">200</span>
+              <span id="max-val">₾8000</span>
+            </div>
+            <input id="range" type="range" min="30" max="8000" value="500" />
+          </div>
+        </div>
+
+        <div class="filter-block">
+          <label>კატეგორია</label>
+          <div class="checkbox-group">
+            <label
+              ><input id="check-laptops" value="1" type="checkbox" />
+              ლეპტოპები</label
+            >
+            <label
+              ><input id="check-phones" value="2" type="checkbox" />
+              ტელეფონები</label
+            >
+          </div>
+          <div class="brands">
+            <label>ბრენდები</label>
+            <select id="brands-input">
+              <option value="">ბრენდი</option>
+              <option value="asus">Asus</option>
+              <option value="apple">Apple</option>
+              <option value="honor">Honor</option>
+              <option value="acer">Acer</option>
+              <option value="dell">Dell</option>
+              <option value="lenovo">Lenovo</option>
+              <option value="lg">Lg</option>
+              <option value="msi">Msi</option>
+              <option value="samsung">Samsung</option>
+              <option value="xiaomi">Xiaomi</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-block">
+          <label>რეიტინგი</label>
+          <select id="rating-input">
+            <option value="">ყველა</option>
+            <option value="4">4★ და ზემოთ</option>
+            <option value="3">3★ და ზემოთ</option>
+          </select>
+        </div>
+      </aside>
+      <div id="fillter-wrapper" class="fillter-wrapper">
+        <div id="fillter-item-container" class="fillter-item-container">
+          <h1 id="discover">Discover 🔎</h1>
+          <!-- <img src="../assets/pc-banner.jpg" alt="" /> -->
+        </div>
+        <div id="pages" class="pages">
+          <button id="prev-page">&#10094;</button>
+          <h2 id="current-html">1</h2>
+          <button id="next-page">&#10095;</button>
+        </div>
+      </div>
+    </section>
+
+    <script
+      src="https://kit.fontawesome.com/c0c94e5aa2.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="module" src="/auth/auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script src="../script/main.js"></script>
+    <script src="navigation.js"></script>
+    <script src="../script/product.js"></script>
+  </body>
+</html>

@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/index.css" />
     <link rel="stylesheet" href="Placeholders/preload.css" />
+
+    <link rel="icon" href="./assets/58596977_9391707.png" />
+
     <title>Online Market</title>
   </head>
   <body>
@@ -32,23 +35,132 @@
           <h2>SwiftBuy</h2>
         </div>
         <nav class="navigation">
-          <div id="navs" class="nav-item btn primary-btn">
-            <i class="fa-solid fa-grip"></i>
-            <h4>ნავიგაცია</h4>
-          </div>
+          <a href="navigation/navigation.html">
+            <div id="navs" class="nav-item btn primary-btn">
+              <i class="fa-solid fa-grip"></i>
+              <h4>ნავიგაცია</h4>
+            </div>
+          </a>
           <div class="search-container">
             <i class="fa-solid fa-magnifying-glass"></i>
             <input id="search-bar" placeholder="ძიება" type="text" />
           </div>
-          <div id="cart" class="cart btn secondary-btn">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <h4>კალათა</h4>
+          <div class="cart btn secondary-btn">
+            <div class="cart-icon-wrapper">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <h4>კალათა</h4>
+            </div>
+            <span id="cart" class="cart-i">
+              <span id="cart-wrapper" class="cart-wrapper">
+                <span class="cart-head">
+                  <p>კალათა</p>
+                  <span class="amount-wrapper">
+                    <p id="cart-amount">0</p>
+                    <p>პროდუქტი</p>
+                  </span>
+                </span>
+                <span id="cart-body" class="cart-body">
+                  <img src="./assets/emptybag.svg" alt="" />
+                </span>
+                <span class="cart-bottom">
+                  <span class="total-amount">
+                    <p>ჯამური ფასი:</p>
+                    <p id="cart-total">0$</p>
+                  </span>
+                  <a href="./cart/cart.html">
+                    <button class="primary-btn btn">კალათაში გადავლა</button>
+                  </a>
+                </span>
+              </span>
+            </span>
           </div>
-          <div id="login" class="login btn secondary-btn">
+          <i id="close" class="close fa-solid fa-x"></i>
+          <div class="sign-in login btn secondary-btn">
             <i class="fa-solid fa-user"></i>
             <h4>შესვლა</h4>
+            <div class="form-cover forms-cover">
+              <span class="login login-model show">
+                <form class="login-form" action="">
+                  <span class="switch-forms-container">
+                    <span class="switch-forms">
+                      <p class="logini">შესვლა</p>
+                      <p class="registeri">რეგისტრაცია</p>
+                    </span>
+                    <div class="line-container">
+                      <div class="line"></div>
+                    </div>
+                  </span>
+                  <h2>შესვლა</h2>
+                  <input class="email" type="text" placeholder="ელ. ფოსტა" />
+                  <input
+                    class="password"
+                    type="password"
+                    placeholder="პაროლი"
+                  />
+                  <p id="forgot-password">
+                    დაგავიწყდა პაროლი?
+                    <a class="forgot-passwork-link" href="">Click</a>
+                  </p>
+                  <button class="primary-btn btn">შესვლა</button>
+                </form>
+              </span>
+              <span class="register register-model">
+                <form class="register-form" action="">
+                  <span class="switch-forms-container">
+                    <span class="switch-forms">
+                      <p class="logini">შესვლა</p>
+                      <p class="registeri">რეგისტრაცია</p>
+                    </span>
+                    <div class="line-container">
+                      <div class="line"></div>
+                    </div>
+                  </span>
+                  <h2>რეგისტრაცია</h2>
+                  <input
+                    required
+                    class="name"
+                    type="text"
+                    placeholder="სახელი"
+                  />
+                  <input required class="age" type="text" placeholder="ასაკი" />
+                  <input
+                    required
+                    class="email"
+                    type="email"
+                    placeholder="ელ. ფოსტა"
+                  />
+                  <input
+                    required
+                    class="phone"
+                    value="+995"
+                    type="tel"
+                    placeholder="ელ. ტელეფონი"
+                  />
+                  <input
+                    required
+                    class="password"
+                    type="password"
+                    placeholder="პაროლი"
+                  />
+                  <p id="forgot-password">
+                    დაგავიწყდა პაროლი?
+                    <a id="forgot-passwork-link" href="">Click</a>
+                  </p>
+                  <button class="primary-btn btn">რეგისტრაცია</button>
+                </form>
+              </span>
+            </div>
           </div>
-          <i class="fa-solid fa-calculator btn primary-btn"></i>
+
+          <a
+            id="account-container"
+            class="account-container"
+            href="./auth/account.html"
+          >
+            <div>
+              <h2>S</h2>
+            </div>
+          </a>
         </nav>
       </div>
     </header>
@@ -58,32 +170,11 @@
           <ul>
             <div>
               <i class="fa-solid fa-mobile-screen"></i>
-              <a href="">მობილური</a>
+              <a href="">მობილურები</a>
             </div>
             <div>
               <i class="fa-solid fa-laptop"></i>
-              <a href="">ლეპტოპი</a>
-            </div>
-
-            <div>
-              <i class="fa-solid fa-tv"></i>
-              <a href="">ტელევიზორი</a>
-            </div>
-            <div>
-              <i class="fa-solid fa-desktop"></i>
-              <a href="">კომპიუტერი (PC)</a>
-            </div>
-            <div>
-              <i class="fa-solid fa-microchip"></i>
-              <a href="">აქსესუარები</a>
-            </div>
-            <div>
-              <i class="fa-solid fa-desktop"></i>
-              <a href="">კომპიუტერი (PC)</a>
-            </div>
-            <div>
-              <i class="fa-solid fa-microchip"></i>
-              <a href="">აქსესუარები</a>
+              <a href="">ლეპტოპები</a>
             </div>
           </ul>
 
@@ -91,9 +182,9 @@
             <button class="arrow left">&#10094;</button>
 
             <div class="carousel-track">
-              <img src="./assets/pc-banner.jpg" />
-              <img src="./assets/pc-banner.jpg" />
-              <img src="./assets/pc-banner.jpg" />
+              <img src="./assets/banner1.webp" />
+              <img src="./assets/banner2.webp" />
+              <img src="./assets/banner3.webp" />
             </div>
 
             <button class="arrow right">&#10095;</button>
@@ -106,22 +197,40 @@
           <div class="arrow left">&#10094;</div>
           <div id="product-carousel" class="item-carousel-product">
             <div class="placeholder-item">
-              <span class="loader"></span>
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
             </div>
             <div class="placeholder-item">
-              <span class="loader"></span>
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
             </div>
             <div class="placeholder-item">
-              <span class="loader"></span>
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
             </div>
             <div class="placeholder-item">
-              <span class="loader"></span>
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
             </div>
             <div class="placeholder-item">
-              <span class="loader"></span>
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
             </div>
             <div class="placeholder-item">
-              <span class="loader"></span>
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
             </div>
           </div>
           <div class="arrow right">&#10095;</div>
@@ -129,19 +238,156 @@
         <section id="categories" class="categories">
           <button class="arrow left">&#10094;</button>
           <div id="categories-item-wrapper">
-            <div class="placeholder-categories">
-              <span class="loader"></span>
-            </div>
-            <div class="placeholder-categories">
-              <span class="loader"></span>
-            </div>
-            <div class="placeholder-categories">
-              <span class="loader"></span>
-            </div>
+            <div class="placeholder-categories"></div>
+            <div class="placeholder-categories"></div>
+            <div class="placeholder-categories"></div>
           </div>
           <button class="arrow right">&#10095;</button>
         </section>
         <div id="product-cards" class="product-cards laptops">
+          <h2>ლეპტოპები</h2>
+          <button class="arrow left">&#10094;</button>
+          <div id="item-wrapper" class="item-carousel-product">
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+          </div>
+          <button class="arrow right">&#10095;</button>
+        </div>
+        <section id="product-cards" class="product-cards phones">
+          <h2>ტელეფონები</h2>
+          <button class="arrow left">&#10094;</button>
+          <div id="item-wrapper" class="item-carousel-product">
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+          </div>
+          <button class="arrow right">&#10095;</button>
+        </section>
+        <div class="banner">
+          <img
+            id="banner-img-1"
+            src="./assets/productIMG/laptops/acer.png"
+            alt="NOT FOUND!"
+          />
+          <img
+            id="banner-img-2"
+            src="./assets/productIMG/laptops/acer.png"
+            alt="NOT FOUND!"
+          />
+          <div class="banner-container">
+            <h1>ლეპტოპები</h1>
+          </div>
+        </div>
+        <section id="product-cards" class="product-cards phones">
+          <h2>ტელეფონები</h2>
+
+          <div id="item-wrapper" class="item-carousel-product">
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="product-cards" class="product-cards laptops">
           <h2>ლეპტოპები</h2>
           <button class="arrow left">&#10094;</button>
           <div id="item-wrapper" class="item-carousel-product">
@@ -165,9 +411,67 @@
             </div>
           </div>
           <button class="arrow right">&#10095;</button>
+        </section>
+        <div class="banner">
+          <img
+            id="banner-img-1"
+            src="./assets/productIMG/laptops/acer.png"
+            alt="NOT FOUND!"
+          />
+          <img
+            id="banner-img-2"
+            src="./assets/—Pngtree—apple - iphone 11 pro_14745655.png"
+            alt="NOT FOUND!"
+          />
+          <div class="banner-container">
+            <h1>ტელეფონები</h1>
+          </div>
         </div>
-        <div id="product-cards" class="product-cards phones">
-          <h2>ტელეფონები</h2>
+        <section id="product-cards" class="product-cards laptops">
+          <h2>ლეპტოპები <span>(ფასდაკლებით)</span></h2>
+          <button class="arrow left">&#10094;</button>
+          <div id="item-wrapper" class="item-carousel-product">
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+            <div class="placeholder-item">
+              <div class="placeholder-text">
+                <div class="text-line"></div>
+                <div class="text-line"></div>
+              </div>
+            </div>
+          </div>
+          <button class="arrow right">&#10095;</button>
+        </section>
+        <section id="product-cards" class="product-cards phones">
+          <h2>ტელეფონები <span>(ფასდაკლებით)</span></h2>
           <button class="arrow left">&#10094;</button>
           <div id="item-wrapper" class="item-carousel-product">
             <div class="placeholder-item">
@@ -190,13 +494,87 @@
             </div>
           </div>
           <button class="arrow right">&#10095;</button>
-        </div>
+        </section>
       </div>
     </main>
+    <footer>
+      <div class="footer-container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <img src="./assets/58596977_9391707.png" alt="SwiftBuy Logo" />
+              <h2>SwiftBuy</h2>
+            </div>
+            <p class="footer-description">
+              თქვენი სანდო ონლაინ მაღაზია ელექტრონიკისთვის. საუკეთესო ფასები და
+              მომსახურება.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#"><i class="fa-brands fa-twitter"></i></a>
+              <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-column">
+            <h3>სწრაფი ლინკები</h3>
+            <ul>
+              <li><a href="./index.html">მთავარი</a></li>
+              <li><a href="./navigation/navigation.html">პროდუქტები</a></li>
+              <li><a href="#categories">კატეგორიები</a></li>
+              <li><a href="#">ფასდაკლებები</a></li>
+              <li><a href="#">ახალი პროდუქტები</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>ინფორმაცია</h3>
+            <ul>
+              <li><a href="#">ჩვენს შესახებ</a></li>
+              <li><a href="#">სავაჭრო პოლიტიკა</a></li>
+              <li><a href="#">განვადება</a></li>
+              <li><a href="#">მიწოდება</a></li>
+              <li><a href="#">გარანტია</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>კონტაქტი</h3>
+            <div class="contact-info">
+              <div class="contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <span>*7007 / +995 (32) 2 60 30 60</span>
+              </div>
+              <div class="contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <span>info@swiftbuy.ge</span>
+              </div>
+              <div class="contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>თბილისი, საქართველო</span>
+              </div>
+              <div class="contact-item">
+                <i class="fa-solid fa-clock"></i>
+                <span>ორშ-შაბ: 10:00 - 20:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2024 SwiftBuy. ყველა უფლება დაცულია.</p>
+        </div>
+      </div>
+    </footer>
     <script
       src="https://kit.fontawesome.com/c0c94e5aa2.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script type="module" src="auth/auth.js"></script>
     <script src="script/categories.js"></script>
     <script src="./script/package.js"></script>
     <script src="./script/product.js"></script>

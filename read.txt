@@ -1,0 +1,4 @@
+Cart = შევქმნა კალათის დიზაინი თავისი id-ით კალათა უნდა იყოს overFlow: scroll;
+Cart item = კალათის აითემი თავისი დიზაინით უნდა ჰქონდეს increment/Decrement და DELETE
+
+addToCart- ფუნქცია 

@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/index.css" />
+    <link rel="stylesheet" href="./product.css" />
+    <link rel="stylesheet" href="../Placeholders/preload.css" />
+    <title>Product</title>
+  </head>
+  <body>
+    <div class="top-header">
+      <div class="top-header-container">
+        <div class="phone-number">
+          <i class="fa-solid fa-phone"></i>
+          <p>*7007 / +995 (32) 2 60 30 60</p>
+        </div>
+        <ul>
+          <a href="">სავაჭრო პოლიტიკა</a>
+          <a href="">განვადება</a>
+          <a href="">ფილიალები</a>
+          <select name="lang">
+            <option value="">ENG</option>
+            <option value="">GEO</option>
+          </select>
+        </ul>
+      </div>
+    </div>
+    <header>
+      <div class="header-container">
+        <div class="logo-wrapper">
+          <img src="../assets/58596977_9391707.png" alt="NOT FOUND!" />
+          <h2>SwiftBuy</h2>
+        </div>
+        <nav class="navigation">
+          <a href="../navigation/navigation.html">
+            <div id="navs" class="nav-item btn primary-btn">
+              <i class="fa-solid fa-grip"></i>
+              <h4>ნავიგაცია</h4>
+            </div>
+          </a>
+          <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input id="search-bar" placeholder="ძიება" type="text" />
+          </div>
+          <div class="cart btn secondary-btn">
+            <div class="cart-icon-wrapper">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <h4>კალათა</h4>
+            </div>
+            <span id="cart" class="cart-i">
+              <span id="cart-wrapper" class="cart-wrapper">
+                <span class="cart-head">
+                  <p>კალათა</p>
+                  <span class="amount-wrapper">
+                    <p id="cart-amount">0</p>
+                    <p>პროდუქტი</p>
+                  </span>
+                </span>
+                <span id="cart-body" class="cart-body">
+                  <img src="./assets/emptybag.svg" alt="" />
+                </span>
+                <span class="cart-bottom">
+                  <span class="total-amount">
+                    <p>ჯამურუ ფასი:</p>
+                    <p id="cart-total">0$</p>
+                  </span>
+                  <button class="primary-btn btn">კალათაში გადასვლა</button>
+                </span>
+              </span>
+            </span>
+          </div>
+          <i id="close" class="close fa-solid fa-x"></i>
+          <div class="sign-in login btn secondary-btn">
+            <i class="fa-solid fa-user"></i>
+            <h4>შესვლა</h4>
+            <div class="form-cover forms-cover">
+              <span class="login login-model show">
+                <form class="login-form" action="">
+                  <span class="switch-forms-container">
+                    <span class="switch-forms">
+                      <p class="logini">შესვლა</p>
+                      <p class="registeri">რეგისტრაცია</p>
+                    </span>
+                    <div class="line-container">
+                      <div class="line"></div>
+                    </div>
+                  </span>
+                  <h2>შესვლა</h2>
+                  <input class="email" type="text" placeholder="ელ. ფოსტა" />
+                  <input
+                    class="password"
+                    type="password"
+                    placeholder="პაროლი"
+                  />
+                  <p id="forgot-password">
+                    დაგავიწყდა პაროლი?
+                    <a class="forgot-passwork-link" href="">Click</a>
+                  </p>
+                  <button class="primary-btn btn">შესვლა</button>
+                </form>
+              </span>
+              <span class="register register-model">
+                <form class="register-form" action="">
+                  <span class="switch-forms-container">
+                    <span class="switch-forms">
+                      <p class="logini">შესვლა</p>
+                      <p class="registeri">რეგისტრაცია</p>
+                    </span>
+                    <div class="line-container">
+                      <div class="line"></div>
+                    </div>
+                  </span>
+                  <h2>რეგისტრაცია</h2>
+                  <input
+                    required
+                    class="name"
+                    type="text"
+                    placeholder="სახელი"
+                  />
+                  <input required class="age" type="text" placeholder="ასაკი" />
+                  <input
+                    required
+                    class="email"
+                    type="email"
+                    placeholder="ელ. ფოსტა"
+                  />
+                  <input
+                    required
+                    class="phone"
+                    value="+995"
+                    type="tel"
+                    placeholder="ელ. ტელეფონი"
+                  />
+                  <input
+                    required
+                    class="password"
+                    type="password"
+                    placeholder="პაროლი"
+                  />
+                  <p id="forgot-password">
+                    დაგავიწყდა პაროლი?
+                    <a id="forgot-passwork-link" href="">Click</a>
+                  </p>
+                  <button class="primary-btn btn">რეგისტრაცია</button>
+                </form>
+              </span>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="main-container">
+        <div id="product-container" class="product-container">
+          <div id="product-holder" class="product-holder">
+            <nav>
+              <div class="links">
+                <div
+                  class="placeholder-item"
+                  style="min-width: 60px; height: 20px; margin-bottom: 0"
+                ></div>
+                &#10095;
+                <div
+                  class="placeholder-item"
+                  style="min-width: 80px; height: 20px; margin-bottom: 0"
+                ></div>
+                &#10095;
+                <div
+                  class="placeholder-item"
+                  style="min-width: 70px; height: 20px; margin-bottom: 0"
+                ></div>
+              </div>
+              <div
+                class="placeholder-item"
+                style="min-width: 100px; height: 20px; margin-bottom: 0"
+              ></div>
+            </nav>
+            <div id="product-content" class="product-content">
+              <div class="img-wrapper">
+                <div
+                  class="placeholder-item"
+                  style="min-width: 200px; height: 30px; margin-bottom: 15px"
+                ></div>
+                <div
+                  class="placeholder-item"
+                  style="width: 100%; height: 250px"
+                ></div>
+              </div>
+              <div style="width: 70%" class="description">
+                <ul>
+                  <li>
+                    <div
+                      class="placeholder-item"
+                      style="height: 15px; margin-bottom: 8px"
+                    ></div>
+                    <div
+                      class="placeholder-item"
+                      style="height: 15px; margin-bottom: 12px"
+                    ></div>
+                  </li>
+                  <li>
+                    <div
+                      class="placeholder-item"
+                      style="height: 15px; margin-bottom: 8px"
+                    ></div>
+                    <div
+                      class="placeholder-item"
+                      style="height: 15px; margin-bottom: 12px"
+                    ></div>
+                  </li>
+                  <li>
+                    <div
+                      class="placeholder-item"
+                      style="height: 15px; margin-bottom: 8px"
+                    ></div>
+                    <div
+                      class="placeholder-item"
+                      style="height: 15px; margin-bottom: 12px"
+                    ></div>
+                  </li>
+                  <li>
+                    <div
+                      class="placeholder-item"
+                      style="height: 15px; margin-bottom: 8px"
+                    ></div>
+                    <div
+                      class="placeholder-item"
+                      style="height: 15px; margin-bottom: 12px"
+                    ></div>
+                  </li>
+                  <li>
+                    <div
+                      class="placeholder-item"
+                      style="height: 15px; margin-bottom: 8px"
+                    ></div>
+                    <div
+                      class="placeholder-item"
+                      style="height: 15px; margin-bottom: 12px"
+                    ></div>
+                  </li>
+                  <li>
+                    <div
+                      class="placeholder-item"
+                      style="height: 15px; margin-bottom: 8px"
+                    ></div>
+                    <div
+                      class="placeholder-item"
+                      style="height: 15px; margin-bottom: 12px"
+                    ></div>
+                  </li>
+                  <li>
+                    <div
+                      class="placeholder-item"
+                      style="height: 15px; margin-bottom: 8px"
+                    ></div>
+                    <div
+                      class="placeholder-item"
+                      style="height: 15px; margin-bottom: 12px"
+                    ></div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div id="product-price" class="product-price">
+            <div class="price-head">
+              <div
+                class="placeholder-item"
+                style="min-width: 100px; height: 25px; margin-bottom: 0"
+              ></div>
+              <div
+                class="placeholder-item"
+                style="min-width: 80px; height: 20px; margin-bottom: 0"
+              ></div>
+            </div>
+            <div
+              class="placeholder-item"
+              style="width: 100%; height: 40px"
+            ></div>
+          </div>
+          <div class="similar-products">
+            <h2>მსგავსი პროდუქტები</h2>
+            <div class="arrow left">&#10094;</div>
+            <div
+              id="similar-carousel-container"
+              class="similar-carousel-container"
+            >
+              <div class="similar-carousel-item">
+                <div class="image-wrapper">
+                  <div
+                    class="placeholder-item"
+                    style="width: 80%; height: 80px"
+                  ></div>
+                </div>
+                <div class="content">
+                  <div
+                    class="placeholder-item"
+                    style="height: 12px; margin-bottom: 8px"
+                  ></div>
+                  <div
+                    class="placeholder-item"
+                    style="height: 12px; margin-bottom: 8px"
+                  ></div>
+                  <div
+                    class="placeholder-item"
+                    style="height: 12px; margin-bottom: 12px; width: 70%"
+                  ></div>
+                </div>
+              </div>
+              <div class="similar-carousel-item">
+                <div class="image-wrapper">
+                  <div
+                    class="placeholder-item"
+                    style="width: 80%; height: 80px"
+                  ></div>
+                </div>
+                <div class="content">
+                  <div
+                    class="placeholder-item"
+                    style="height: 12px; margin-bottom: 8px"
+                  ></div>
+                  <div
+                    class="placeholder-item"
+                    style="height: 12px; margin-bottom: 8px"
+                  ></div>
+                  <div
+                    class="placeholder-item"
+                    style="height: 12px; margin-bottom: 12px; width: 70%"
+                  ></div>
+                </div>
+              </div>
+              <div class="similar-carousel-item">
+                <div class="image-wrapper">
+                  <div
+                    class="placeholder-item"
+                    style="width: 80%; height: 80px"
+                  ></div>
+                </div>
+                <div class="content">
+                  <div
+                    class="placeholder-item"
+                    style="height: 12px; margin-bottom: 8px"
+                  ></div>
+                  <div
+                    class="placeholder-item"
+                    style="height: 12px; margin-bottom: 8px"
+                  ></div>
+                  <div
+                    class="placeholder-item"
+                    style="height: 12px; margin-bottom: 12px; width: 70%"
+                  ></div>
+                </div>
+              </div>
+              <div class="similar-carousel-item">
+                <div class="image-wrapper">
+                  <div
+                    class="placeholder-item"
+                    style="width: 80%; height: 80px"
+                  ></div>
+                </div>
+                <div class="content">
+                  <div
+                    class="placeholder-item"
+                    style="height: 12px; margin-bottom: 8px"
+                  ></div>
+                  <div
+                    class="placeholder-item"
+                    style="height: 12px; margin-bottom: 8px"
+                  ></div>
+                  <div
+                    class="placeholder-item"
+                    style="height: 12px; margin-bottom: 12px; width: 70%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div class="arrow right">&#10095;</div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="footer-container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <img src="../assets/58596977_9391707.png" alt="SwiftBuy Logo" />
+              <h2>SwiftBuy</h2>
+            </div>
+            <p class="footer-description">
+              თქვენი სანდო ონლაინ მაღაზია ელექტრონიკისთვის. საუკეთესო ფასები და
+              მომსახურება.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#"><i class="fa-brands fa-twitter"></i></a>
+              <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="footer-column">
+            <h3>სწრაფი ლინკები</h3>
+            <ul>
+              <li><a href="#">მთავარი</a></li>
+              <li><a href="#">პროდუქტები</a></li>
+              <li><a href="#">კატეგორიები</a></li>
+              <li><a href="#">ფასდაკლებები</a></li>
+              <li><a href="#">ახალი პროდუქტები</a></li>
+            </ul>
+          </div>
+
+          <!-- Info -->
+          <div class="footer-column">
+            <h3>ინფორმაცია</h3>
+            <ul>
+              <li><a href="#">ჩვენს შესახებ</a></li>
+              <li><a href="#">სავაჭრო პოლიტიკა</a></li>
+              <li><a href="#">განვადება</a></li>
+              <li><a href="#">მიწოდება</a></li>
+              <li><a href="#">გარანტია</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div class="footer-column">
+            <h3>კონტაქტი</h3>
+            <div class="contact-info">
+              <div class="contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <span>*7007 / +995 (32) 2 60 30 60</span>
+              </div>
+              <div class="contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <span>info@swiftbuy.ge</span>
+              </div>
+              <div class="contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>თბილისი, საქართველო</span>
+              </div>
+              <div class="contact-item">
+                <i class="fa-solid fa-clock"></i>
+                <span>ორშ-შაბ: 10:00 - 20:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2024 SwiftBuy. ყველა უფლება დაცულია.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/c0c94e5aa2.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script type="module" src="../auth/auth.js"></script>
+    <script src="../script/main.js"></script>
+    <script src="./product_page.js"></script>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/index.css" />
+    <link rel="stylesheet" href="account.css" />
+    <title>Profile</title>
+  </head>
+  <body>
+    <div class="top-header">
+      <div class="top-header-container">
+        <div class="phone-number">
+          <i class="fa-solid fa-phone"></i>
+          <p>*7007 / +995 (32) 2 60 30 60</p>
+        </div>
+        <ul>
+          <a href="">სავაჭრო პოლიტიკა</a>
+          <a href="">განვადება</a>
+          <a href="">ფილიალები</a>
+          <select name="lang">
+            <option value="">ENG</option>
+            <option value="">GEO</option>
+          </select>
+        </ul>
+      </div>
+    </div>
+    <header>
+      <div class="header-container">
+        <div class="logo-wrapper">
+          <img src="../assets/58596977_9391707.png" alt="NOT FOUND!" />
+          <h2>SwiftBuy</h2>
+        </div>
+        <nav class="navigation">
+          <a href="../navigation/navigation.html">
+            <div id="navs" class="nav-item btn primary-btn">
+              <i class="fa-solid fa-grip"></i>
+              <h4>ნავიგაცია</h4>
+            </div>
+          </a>
+          <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input id="search-bar" placeholder="ძიება" type="text" />
+          </div>
+          <div class="cart btn secondary-btn">
+            <div class="cart-icon-wrapper">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <h4>კალათა</h4>
+            </div>
+            <span id="cart" class="cart-i">
+              <span id="cart-wrapper" class="cart-wrapper">
+                <span class="cart-head">
+                  <p>კალათა</p>
+                  <span class="amount-wrapper">
+                    <p id="cart-amount">0</p>
+                    <p>პროდუქტი</p>
+                  </span>
+                </span>
+                <span id="cart-body" class="cart-body">
+                  <img src="./assets/emptybag.svg" alt="" />
+                </span>
+                <span class="cart-bottom">
+                  <span class="total-amount">
+                    <p>ჯამური ფასი:</p>
+                    <p id="cart-total">0$</p>
+                  </span>
+                  <a href="./cart/cart.html">
+                    <button class="primary-btn btn">კალათაში გადავლა</button>
+                  </a>
+                </span>
+              </span>
+            </span>
+          </div>
+          <i id="close" class="fa-solid fa-x"></i>
+        </nav>
+      </div>
+    </header>
+
+    <script
+      src="https://kit.fontawesome.com/c0c94e5aa2.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script type="module" src="auth/auth.js"></script>
+    <script src="../scripts/main.js"></script>
+    <script src="../product_page/product_page.js"></script>
+    <script src="../script/product.js"></script>
+  </body>
+</html>

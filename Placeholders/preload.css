@@ -1,75 +1,99 @@
+/* PLACEHOLDER CARD STYLING WITH SHIMMER EFFECT */
 .placeholder-item {
   min-width: 190px;
   height: 292px;
-  /* height: 100%; */
-  background-color: #ccc;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   border-radius: 10px;
-  opacity: 0.5;
+  overflow: hidden;
+  animation: shimmer 2s infinite;
 }
+
+.placeholder-item::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%);
+  animation: shine 2s infinite;
+}
+
+.placeholder-item .placeholder-text {
+  flex: 1;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.placeholder-item .text-line {
+  height: 12px;
+  background-color: rgba(200, 200, 200, 0.6);
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.placeholder-item .text-line:last-child {
+  width: 80%;
+}
+
 .placeholder-categories {
-  background-color: #ccc;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
   min-width: 370px;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  opacity: 0.7;
+  animation: shimmer 2s infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.placeholder-categories::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%);
+  animation: shine 2s infinite;
 }
 
 .loader {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: inline-block;
-  position: relative;
-  border: 3px solid;
-  border-color: #fff #fff transparent transparent;
-  box-sizing: border-box;
-  animation: rotation 0.7s ease infinite;
-}
-.loader::after,
-.loader::before {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  border: 3px solid;
-  border-color: transparent transparent #ff3d00 #ff3d00;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  box-sizing: border-box;
-  animation: rotationBack 0.5s ease infinite;
-  transform-origin: center center;
-}
-.loader::before {
-  width: 32px;
-  height: 32px;
-  border-color: #fff #fff transparent transparent;
-  animation: rotation 0.5s ease infinite;
+  display: none;
 }
 
-@keyframes rotation {
+@keyframes shimmer {
   0% {
-    transform: rotate(0deg);
+    background-position: -200% 0;
   }
   100% {
-    transform: rotate(360deg);
+    background-position: 200% 0;
   }
 }
-@keyframes rotationBack {
+
+@keyframes shine {
   0% {
-    transform: rotate(0deg);
+    transform: translateX(-100%);
   }
   100% {
-    transform: rotate(-360deg);
+    transform: translateX(100%);
   }
 }

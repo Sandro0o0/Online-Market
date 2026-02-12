@@ -17,10 +17,10 @@ $cl-cart: #f28f6a;
   box-shadow: 0px 0px 5px 0px $cl-sec;
   border-radius: 15px;
   cursor: pointer;
-  opacity: 0.8;
+  // opacity: 0.8;
 
   &:hover {
-    scale: 1.05;
+    // scale: 1.05;
     opacity: 1;
   }
 
@@ -33,9 +33,10 @@ $cl-cart: #f28f6a;
   background-color: $cl-pry;
   max-width: 100px;
   color: #fff;
-  opacity: 0.9 !important;
+  // opacity: 0.9 !important;
 }
 .secondary-btn {
+  opacity: 1;
   background-color: #fff !important;
   width: 100px;
   color: #000;
@@ -60,4 +61,8 @@ $cl-cart: #f28f6a;
   padding: 10px 15px;
   border-radius: 5px;
   max-width: 150px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
