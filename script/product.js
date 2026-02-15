@@ -1,15 +1,6 @@
 let product = [];
 let categories = [];
-// localStorage.setItem("cart", JSON.stringify([]));
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-// if (cart.length <= 0) {
-//   // return;
-// } else {
-//   updateCart(cart);
-// }
-// console.log(cart);
-// localStorage.clear();
+// let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const cardSection = document.getElementById(`product-cards`);
 const productCarusel = document.getElementById(`product-carousel`);
@@ -19,7 +10,7 @@ let itemCarouselProduct = document.getElementsByClassName(
 
 function addProductClickHandlers(container) {
   const carouselItems = container.querySelectorAll(".carousel-item");
-  cart = [];
+  // cart = [];
   carouselItems.forEach((item) => {
     item.addEventListener("click", (e) => {
       const productId = item.id;
@@ -44,14 +35,30 @@ function addProductClickHandlers(container) {
           };
 
           if (!localStorage.getItem("accessToken")) {
-            alert("გთოვთ შეხვიდეთ ანგარიშში ჯერ");
+            Swal.fire({
+              title: "ჯერ უნდა შეხვიდეთ ანგარიშში",
+              icon: "warning",
+            });
+            return;
+          }
+          const checkVerified = JSON.parse(localStorage.getItem("temp"));
+          if (!checkVerified.verified) {
+            Swal.fire({
+              title: "თქვენი ანგარიში არ არის ვერიპიცირებული",
+              icon: "warning",
+              html: `
+    <a style="text-decoration:none;" href="../auth/account.html" autofocus>დააჭირეთ აქ</a>,
+  `,
+            });
             return;
           }
 
           if (cartNew.stock < 1) {
-            alert(
-              "მონაცემთა ბაზაში ამ პროდუქტის მარაგი ამოიწურა, გთხოვთ შეარჩიოთ სხვა პროდუქტი",
-            );
+            Swal.fire({
+              title: "მარაგში რაუდენობა ამოიწურა",
+              icon: "error",
+            });
+
             return;
           }
 
@@ -78,20 +85,37 @@ function addProductClickHandlers(container) {
 
 async function saveCart(cartNew) {
   try {
-    let response = await fetch(
-      `https://api.everrest.educata.dev/shop/cart/product`,
-      {
-        method: "PATCH",
+    if (!localStorage.getItem("cart")) {
+      await fetch(`https://api.everrest.educata.dev/shop/cart/product`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
         body: JSON.stringify({
-          id: cartNew.id,
-          quantity: cartNew.quantiti,
+          id: `${cartNew.id}`,
+          quantity: 1,
         }),
-      },
-    );
+      });
+      // localStorage.setItem("cart", JSON.stringify(cart));
+      return;
+    } else {
+      let response = await fetch(
+        `https://api.everrest.educata.dev/shop/cart/product`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+          body: JSON.stringify({
+            id: cartNew.id,
+            quantity: cartNew.quantiti,
+          }),
+        },
+      );
+    }
+    console.log(cart);
     let data = await response.json();
 
     console.log(data);

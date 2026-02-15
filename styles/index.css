@@ -668,10 +668,6 @@ main .main-container {
   height: 65%;
   overflow-y: scroll;
   overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
 }
 .cart-body::-webkit-scrollbar {
   width: 7px;
@@ -685,6 +681,12 @@ main .main-container {
 }
 .cart-body::-webkit-scrollbar-thumb:hover {
   box-shadow: 0px 0px 10px 5px #fd5b4c;
+}
+.cart-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 .cart-body .cart-item {
   width: 100%;
@@ -918,7 +920,6 @@ body:has(.forms-cover.active) .forms-cover {
   transition: 0.2s linear all;
   transform: translateY(50px);
   opacity: 0;
-  /* Form box */
 }
 .login-model .login {
   color: #fd5b4c !important;
@@ -953,6 +954,9 @@ body:has(.forms-cover.active) .forms-cover {
   width: 40%;
   height: 100%;
   background: rgba(253, 91, 76, 0.5);
+}
+.login-model {
+  /* Form box */
 }
 .login-model form {
   background: #ffffff;
@@ -1017,7 +1021,6 @@ body:has(.forms-cover.active) .forms-cover {
   transform: translateY(50px);
   transition: 0.2s linear all;
   opacity: 0;
-  /* Form box */
 }
 .register-model .register {
   color: #fd5b4c !important;
@@ -1052,6 +1055,9 @@ body:has(.forms-cover.active) .forms-cover {
   width: 40%;
   height: 100%;
   background: rgba(253, 91, 76, 0.5);
+}
+.register-model {
+  /* Form box */
 }
 .register-model form {
   background: #ffffff;
@@ -1138,4 +1144,11 @@ body:has(.forms-cover.active) .forms-cover {
 }
 .account-container div {
   max-width: 100%;
+}
+
+.form-error {
+  color: #fd5b4c;
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-weight: 800;
 }/*# sourceMappingURL=index.css.map */

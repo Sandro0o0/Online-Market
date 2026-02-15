@@ -74,6 +74,7 @@
                     </div>
                   </span>
                   <h2>შესვლა</h2>
+                  <span id="login-message"> </span>
                   <input class="email" type="text" placeholder="ელ. ფოსტა" />
                   <input
                     class="password"
@@ -99,6 +100,7 @@
                     </div>
                   </span>
                   <h2>რეგისტრაცია</h2>
+                  <p class="form-error"></p>
                   <input
                     required
                     class="name"
@@ -115,7 +117,6 @@
                   <input
                     required
                     class="phone"
-                    value="+995"
                     type="tel"
                     placeholder="ელ. ტელეფონი"
                   />
@@ -125,16 +126,21 @@
                     type="password"
                     placeholder="პაროლი"
                   />
-                  <p id="forgot-password">
-                    დაგავიწყდა პაროლი?
-                    <a id="forgot-passwork-link" href="">Click</a>
-                  </p>
+
                   <button class="primary-btn btn">რეგისტრაცია</button>
                 </form>
               </span>
             </div>
           </div>
-          <i class="fa-solid fa-calculator btn primary-btn"></i>
+          <a
+            id="account-container"
+            class="account-container"
+            href="../auth/account.html"
+          >
+            <div>
+              <h2 id="account-name-input"></h2>
+            </div>
+          </a>
         </nav>
       </div>
     </header>
@@ -223,6 +229,8 @@
       src="https://kit.fontawesome.com/c0c94e5aa2.js"
       crossorigin="anonymous"
     ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script type="module" src="/auth/auth.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>

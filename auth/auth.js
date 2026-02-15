@@ -1,12 +1,12 @@
 let authenticated = false;
+// localStorage.setItem("cart", []);
 // console.log(Date.now());
 
+// let cart = JSON.parse(localStorage.getItem("cart")) || [];
 checkAuthentication();
 
 const signinBtn = document.querySelector(`.sign-in`);
 const closeBtn = document.querySelector(`.close`);
-console.log(signinBtn);
-console.log(closeBtn);
 
 const formCover = document.querySelector(`.form-cover`);
 const loginContainer = document.querySelector(`.login-model`);
@@ -14,8 +14,6 @@ const registerContainer = document.querySelector(`.register-model`);
 let login = registerContainer.querySelector(`.logini`);
 let register = loginContainer.querySelector(`.registeri`);
 
-console.log(register);
-console.log(registerContainer);
 const lineContainer = document.querySelector(`.line`);
 
 // <-----------------------Animation-Start-------------------------->
@@ -84,17 +82,23 @@ async function loginUser(email, password) {
     );
 
     if (!response.ok) {
+      document.getElementById(`login-message`).textContent =
+        `პაროლი ან ემაილი არასწორია`;
+      document.getElementById(`login-message`).style.color = `red`;
       throw new Error("Failed to login");
     }
 
     const data = await response.json();
     const accessToken = data.access_token;
+    const refreshToken = data.refresh_token;
     localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("refreshToken", refreshToken);
     const decodedPayload = jwt_decode(accessToken);
-    console.log(decodedPayload.exp);
-    // console.log(decodedPayload);
+
+    console.log(decodedPayload);
 
     localStorage.setItem(`exp`, decodedPayload.exp);
+    localStorage.setItem(`temp`, JSON.stringify(decodedPayload));
     checkAuthentication();
 
     // <-------------date expired----------------->
@@ -110,6 +114,7 @@ async function loginUser(email, password) {
     if (authenticated) {
       window.location.href = "../index.html";
     }
+    closeBtn.style.display = `none`;
 
     console.log(decodedPayload);
   } catch (error) {
@@ -134,6 +139,7 @@ async function getCart() {
 }
 async function authupdateCart(data) {
   cart = [];
+  // localStorage.removeItem("cart");
 
   for (let item of data.products) {
     try {
@@ -152,6 +158,7 @@ async function authupdateCart(data) {
         quantiti: item.quantity,
       });
       localStorage.setItem("cart", JSON.stringify(cart));
+      // localStorage.setItem("cart", JSON.stringify(cart));
     } catch (error) {
       console.error(`Error fetching product ${item.productId}:`, error);
     }
@@ -160,11 +167,49 @@ async function authupdateCart(data) {
   updateCart(cart);
 }
 async function checkAuthentication() {
+  // console.log(localStorage.getItem("refreshToken"));s
+
   if (localStorage.getItem("accessToken")) {
+    document.querySelector(`.sign-in`).style.display = "none";
+
+    const refreshToken = localStorage.getItem("refreshToken");
+
+    if (!refreshToken) {
+      console.log("No refresh token found in localStorage");
+      return;
+    }
+
+    const response = await fetch(
+      "https://api.everrest.educata.dev/auth/refresh",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          refresh_token: refreshToken,
+        }),
+      },
+    );
+
+    const data = await response.json();
+    console.log(data.access_token);
+
+    localStorage.setItem("accessToken", data.access_token);
+
+    const decoded = jwt_decode(data.access_token);
+    localStorage.setItem("exp", decoded.exp);
+    localStorage.setItem("temp", JSON.stringify(decoded));
+
     authenticated = true;
     console.log("User is authenticated");
-    document.querySelector(`.sign-in`).style.display = "none";
+    document.getElementById(`account-container`).style.display = `flex`;
+    document.getElementById(`account-name-input`).innerHTML =
+      `${JSON.parse(localStorage.getItem(`temp`)).firstName.slice(0, 1)}`;
     getCart();
+  } else {
+    document.getElementById(`account-container`).style.display = `none`;
   }
   const exp = Number(localStorage.getItem("exp"));
   if (!exp) return;
@@ -176,18 +221,20 @@ async function checkAuthentication() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${localStorage.getItem(`accessToken`)}`,
         },
       },
     );
 
+    localStorage.removeItem("exp");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("cart");
+    localStorage.removeItem("temp");
+    console.log("Token expired");
     return;
   }
 
-  // if (!window.cartLoaded) {
-  //   window.cartLoaded = true; // <-- we set this flag here
-  //   getCart(); // <-- now getCart() runs only once
-  // }
   console.log("User is still authenticated");
 }
 
@@ -213,7 +260,7 @@ async function registerUser(name, email, password, age, phone) {
           email: email,
           password: password,
           address: "ragac",
-          phone: phone,
+          phone: `+995 ${phone}`,
           zipcode: "12345-6789",
           avatar: "https://chatgpt.com/",
           gender: "MALE",
@@ -221,7 +268,9 @@ async function registerUser(name, email, password, age, phone) {
       },
     );
     let data = await response.json();
-    console.log(data);
+    let formError = document.getElementsByClassName(`form-error`)[0];
+    formError.textContent = `${checkRegValidations(data.errorKeys, formError)}`;
+    console.log(data.errorKeys);
   } catch (error) {
     console.log("Error registering user:", error);
   }
@@ -230,5 +279,30 @@ async function registerUser(name, email, password, age, phone) {
 // -----------------------form END-------------------------->
 
 //  ----------------Check-Validation-Start-------------------------->
+function checkRegValidations(error, message) {
+  console.log(error);
+  if (!error) {
+    message.style.color = `green`;
+    window.location.reload();
+    closeBtn.style.display = `none`;
+    return "თქვენ წარმატებით გაიარეთ რეგისტრაცია";
+  }
+  for (let element of error) {
+    console.log(typeof Array(element));
 
+    if (element === "errors.invalid_age") {
+      message.style.color = `red`;
+      return "ასაკი არასწორია";
+    } else if (element === "errors.email_in_use") {
+      message.style.color = `red`;
+      return "ემაილი უკვე გამოყენებულია";
+    } else if (element === "errors.invalid_phone_number") {
+      message.style.color = `red`;
+      return "ნომერი არასწორია";
+    } else if (element === "errors.password_too_short") {
+      message.style.color = `red`;
+      return "პაროლი უნდა შეადგენდეს მინიმუმ 6 ასოს";
+    }
+  }
+}
 //  <-----------------Check-Validation-END-------------------------->

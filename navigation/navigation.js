@@ -11,11 +11,8 @@
 // }
 
 cart = JSON.parse(localStorage.getItem("cart")) || [];
-updateCart(cart);
 // console.log(cart);
-// import { authupdateCart } from "../auth/auth.js";
-
-// authupdateCart(cart);
+updateCart(cart);
 
 const fillterItemContainer = document.getElementById("fillter-item-container");
 const navigate = document.getElementById("navigate");
@@ -112,7 +109,7 @@ function renderProducts(data) {
 
   data.products.forEach((element) => {
     fillterItemContainer.innerHTML += `
-      <div id="${element._id}" class="carousel-item">
+      <div id="${element._id}"  class="carousel-item">
         <div class="image-wrapper">
           <img src="../assets/productIMG/${element.category.name}/${element.brand}.png" />
         </div>
@@ -143,7 +140,7 @@ function renderProducts(data) {
           </div>
 
           <div class="button-wrapper">
-            <button onclick="addToCart('${element._id}')" class="add-to-cart-btn">
+            <button   class="add-to-cart-btn">
               <i class="fa-solid fa-cart-shopping"></i> დამატება
             </button>
           </div>
@@ -151,10 +148,34 @@ function renderProducts(data) {
       </div>
     `;
   });
-  // let btn = document.getElementsByClassName("addBtn")[0];
-  // console.log(btn);
+  let item = Array.from(document.getElementsByClassName(`carousel-item`));
+
+  item.forEach((e) => {
+    const addBtn = e.querySelector(".add-to-cart-btn");
+
+    // Redirect when clicking the card
+    e.addEventListener("click", () => {
+      window.location.href = `../product_page/product.html?id=${e.id}`;
+    });
+
+    // Prevent redirect when clicking Add to Cart
+    if (addBtn) {
+      addBtn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        addToCart(e.id);
+        return;
+      });
+    }
+  });
+  console.log(item);
+
   pages.style.display = "flex";
 }
+
+function loadProductPage(id) {
+  window.location.href = `../product_page/product.html?id=${id}`;
+}
+
 async function addToCart(productid) {
   const response = await fetch(
     `https://api.everrest.educata.dev/shop/products/id/${productid}`,
@@ -175,38 +196,72 @@ async function addToCart(productid) {
     image: `../assets/productIMG/${data.category.name}/${data.brand}.png`,
     quantiti: 1,
   };
-  if (!localStorage.getItem("accessToken")) {
-    alert("გთხოვთ შეხვიდეთ ანგარიშიში ჯერ");
-    return;
-  }
 
-  if (data.stock < 1) {
-    alert("არ არის საკმარისი მარაგში");
+  if (!localStorage.getItem("accessToken")) {
+    Swal.fire({
+      title: "ჯერ უნდა შეხვიდეთ ანგარიშში",
+      icon: "warning",
+    });
     return;
   }
+  const checkVerified = JSON.parse(localStorage.getItem("temp"));
+  if (!checkVerified.verified) {
+    Swal.fire({
+      title: "თქვენი ანგარიში არ არის ვერიპიცირებული",
+      icon: "warning",
+      html: `
+    
+    <a style="text-decoration:none;" href="../auth/account.html" autofocus>დააჭირეთ აქ</a>,
+  `,
+    });
+    return;
+  }
+  if (cartNew.stock < 1) {
+    Swal.fire({
+      title: "მარაგში რაოდენობა ამოიწურა",
+      icon: "error",
+    });
+
+    return;
+  }
+  localStorage.setItem("cart", JSON.stringify(cart));
   cart = JSON.parse(localStorage.getItem(`cart`));
   cart.push(cartNew);
 
-  localStorage.setItem("cart", JSON.stringify(cart));
   saveCart(cartNew);
   updateCart(cart);
 }
 async function saveCart(cartNew) {
   try {
-    let response = await fetch(
-      `https://api.everrest.educata.dev/shop/cart/product`,
-      {
-        method: "PATCH",
+    if (!localStorage.getItem("cart")) {
+      await fetch(`https://api.everrest.educata.dev/shop/cart/product`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
         body: JSON.stringify({
-          id: cartNew.id,
-          quantity: cartNew.quantiti,
+          id: `${cartNew.id}`,
+          quantity: 1,
         }),
-      },
-    );
+      });
+      return;
+    } else {
+      let response = await fetch(
+        `https://api.everrest.educata.dev/shop/cart/product`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+          body: JSON.stringify({
+            id: cartNew.id,
+            quantity: cartNew.quantiti,
+          }),
+        },
+      );
+    }
     let data = await response.json();
 
     console.log(data);

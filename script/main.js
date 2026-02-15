@@ -1,6 +1,5 @@
-// localStorage.clear();
-// ჩატვირთვა
-// updateCart(cart);
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
 async function load() {
   addCategorie();
   uploadBestSale(itemCarouselProduct[0]);

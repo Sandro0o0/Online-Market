@@ -1223,4 +1223,11 @@ body:has(.forms-cover.active) .forms-cover {
   }
 }
 
+.form-error {
+  color: $cl-pry;
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-weight: 800;
+}
+
 // <------------------------form-container----------------------->

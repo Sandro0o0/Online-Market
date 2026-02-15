@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/index.css" />
-    <link rel="stylesheet" href="account.css" />
+    <link rel="stylesheet" href="./account.css" />
     <title>Profile</title>
   </head>
   <body>
@@ -38,7 +38,7 @@
               <h4>ნავიგაცია</h4>
             </div>
           </a>
-          <div class="search-container">
+          <div style="display: none" class="search-container">
             <i class="fa-solid fa-magnifying-glass"></i>
             <input id="search-bar" placeholder="ძიება" type="text" />
           </div>
@@ -57,7 +57,7 @@
                   </span>
                 </span>
                 <span id="cart-body" class="cart-body">
-                  <img src="./assets/emptybag.svg" alt="" />
+                  <img src="../assets/emptybag.svg" alt="" />
                 </span>
                 <span class="cart-bottom">
                   <span class="total-amount">
@@ -72,9 +72,152 @@
             </span>
           </div>
           <i id="close" class="fa-solid fa-x"></i>
+          <i id="close" class="close fa-solid fa-x"></i>
+          <div class="sign-in login btn secondary-btn">
+            <i class="fa-solid fa-user"></i>
+            <h4>შესვლა</h4>
+            <div class="form-cover forms-cover">
+              <span class="login login-model show">
+                <form class="login-form" action="">
+                  <span class="switch-forms-container">
+                    <span class="switch-forms">
+                      <p class="logini">შესვლა</p>
+                      <p class="registeri">რეგისტრაცია</p>
+                    </span>
+                    <div class="line-container">
+                      <div class="line"></div>
+                    </div>
+                  </span>
+                  <h2>შესვლა</h2>
+                  <input class="email" type="text" placeholder="ელ. ფოსტა" />
+                  <input
+                    class="password"
+                    type="password"
+                    placeholder="პაროლი"
+                  />
+                  <p id="forgot-password">
+                    დაგავიწყდა პაროლი?
+                    <a class="forgot-passwork-link" href="">Click</a>
+                  </p>
+                  <button class="primary-btn btn">შესვლა</button>
+                </form>
+              </span>
+              <span class="register register-model">
+                <form class="register-form" action="">
+                  <span class="switch-forms-container">
+                    <span class="switch-forms">
+                      <p class="logini">შესვლა</p>
+                      <p class="registeri">რეგისტრაცია</p>
+                    </span>
+                    <div class="line-container">
+                      <div class="line"></div>
+                    </div>
+                  </span>
+                  <h2>რეგისტრაცია</h2>
+                  <p class="form-error"></p>
+                  <input
+                    required
+                    class="name"
+                    type="text"
+                    placeholder="სახელი"
+                  />
+                  <input required class="age" type="text" placeholder="ასაკი" />
+                  <input
+                    required
+                    class="email"
+                    type="email"
+                    placeholder="ელ. ფოსტა"
+                  />
+                  <input
+                    required
+                    class="phone"
+                    type="tel"
+                    placeholder="ელ. ტელეფონი"
+                  />
+                  <input
+                    required
+                    class="password"
+                    type="password"
+                    placeholder="პაროლი"
+                  />
+
+                  <button class="primary-btn btn">რეგისტრაცია</button>
+                </form>
+              </span>
+            </div>
+          </div>
+          <a
+            id="account-container"
+            class="account-container"
+            href="./auth/account.html"
+          >
+            <div style="display: none !important">
+              <h2 id="account-name-input">S</h2>
+            </div>
+          </a>
         </nav>
       </div>
     </header>
+
+    <main>
+      <div class="main-container">
+        <div class="profile-page">
+          <div class="profile-card">
+            <div class="profile-head">
+              <h2>ჩემი პროფილი</h2>
+              <button id="delete-account">წაშლა</button>
+            </div>
+
+            <div class="info-row">
+              <span>სახელი:</span>
+              <p id="user-name">Gela</p>
+            </div>
+
+            <div class="info-row">
+              <span>ასაკი:</span>
+              <p id="user-age">16</p>
+            </div>
+
+            <div class="info-row">
+              <span>ემაილი:</span>
+              <p id="user-email">example@mail.com</p>
+            </div>
+            <div class="info-row">
+              <span>პაროლი:</span>
+              <button id="change-password-btn">Change</button>
+            </div>
+            <div id="password-container" class="info-row">
+              <div id="change-password" class="change-password">
+                <label for="">Old Password</label>
+                <input placeholder="********" type="text" name="" id="old-password">
+                <label for="">New Password</label>
+                <input placeholder="********" type="text" name="" id="new-password">
+            </div>
+          </div>
+          <div class="info-row">
+            <div id="verify-container" class="verify-container">
+              <span id="verify-message">არა არის ვერიფიცირებული:</span>
+              <i id="icon" class="fa-solid fa-x"></i>
+            </div>
+            <button class="profile-btn" id="verify">verify</button>
+          </div>
+
+          <!-- <div class="timer-container">
+           <span class="timer">
+            <div id="minute">5</div>
+            <p>:</p>
+            <div id="second">00</div>
+           </span>
+          </div> -->
+
+          <div class="info-row">
+            <button class="profile-btn" id="logout">გასვლა</button>
+          </div>
+
+          <!-- <button class="edit-btn">რედაქტირება</button> -->
+        </div>
+      </div>
+    </main>
 
     <script
       src="https://kit.fontawesome.com/c0c94e5aa2.js"
@@ -83,9 +226,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
-    <script type="module" src="auth/auth.js"></script>
-    <script src="../scripts/main.js"></script>
-    <script src="../product_page/product_page.js"></script>
-    <script src="../script/product.js"></script>
+    <script src="account.js"></script>
+    <script type="module" src="../auth/auth.js"></script>
+    <script src="../script/main.js"></script>
   </body>
 </html>

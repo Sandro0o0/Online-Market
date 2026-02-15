@@ -58,14 +58,16 @@
                   </span>
                 </span>
                 <span id="cart-body" class="cart-body">
-                  <img src="./assets/emptybag.svg" alt="" />
+                  <img src="../assets/emptybag.svg" alt="" />
                 </span>
                 <span class="cart-bottom">
                   <span class="total-amount">
                     <p>ჯამურუ ფასი:</p>
                     <p id="cart-total">0$</p>
                   </span>
-                  <button class="primary-btn btn">კალათაში გადასვლა</button>
+                  <a href="../cart/cart.html">
+                    <button class="primary-btn btn">კალათაში გადასვლა</button>
+                  </a>
                 </span>
               </span>
             </span>
@@ -87,6 +89,7 @@
                     </div>
                   </span>
                   <h2>შესვლა</h2>
+                  <span id="login-message"> </span>
                   <input class="email" type="text" placeholder="ელ. ფოსტა" />
                   <input
                     class="password"
@@ -112,6 +115,7 @@
                     </div>
                   </span>
                   <h2>რეგისტრაცია</h2>
+                  <p class="form-error"></p>
                   <input
                     required
                     class="name"
@@ -128,7 +132,6 @@
                   <input
                     required
                     class="phone"
-                    value="+995"
                     type="tel"
                     placeholder="ელ. ტელეფონი"
                   />
@@ -138,15 +141,21 @@
                     type="password"
                     placeholder="პაროლი"
                   />
-                  <p id="forgot-password">
-                    დაგავიწყდა პაროლი?
-                    <a id="forgot-passwork-link" href="">Click</a>
-                  </p>
+
                   <button class="primary-btn btn">რეგისტრაცია</button>
                 </form>
               </span>
             </div>
           </div>
+          <a
+            id="account-container"
+            class="account-container"
+            href="../auth/account.html"
+          >
+            <div>
+              <h2 id="account-name-input">S</h2>
+            </div>
+          </a>
         </nav>
       </div>
     </header>
@@ -154,6 +163,21 @@
     <main>
       <div class="main-container">
         <div id="product-container" class="product-container">
+          <div class="review-cover">
+            <div id="leave-rate">
+              <div id="review-close">
+                <i class="fa-solid fa-x"></i>
+              </div>
+              შეფასების დატოვება:
+              <div>
+                <i class="fa-solid fa-star" id="star-1"></i>
+                <i class="fa-solid fa-star" id="star-2"></i>
+                <i class="fa-solid fa-star" id="star-3"></i>
+                <i class="fa-solid fa-star" id="star-4"></i>
+                <i class="fa-solid fa-star" id="star-5"></i>
+              </div>
+            </div>
+          </div>
           <div id="product-holder" class="product-holder">
             <nav>
               <div class="links">
@@ -463,7 +487,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
     <script type="module" src="../auth/auth.js"></script>
-    <script src="../script/main.js"></script>
     <script src="./product_page.js"></script>
+    <script src="../script/main.js"></script>
   </body>
 </html>
