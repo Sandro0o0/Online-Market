@@ -213,8 +213,8 @@ function generateProductContent(element, data) {
 function generatePrice(element, data) {
   const result = (element.innerHTML = ` 
     <div class="price-head">
-        <label>${data.price.current} ${data.price.currency === "USD" ? "$" : "₾"}</label>
-            <span>${data.price.current === data.price.beforeDiscount ? "" : data.price.beforeDiscount}</span>
+                             <label class="price" for="">${convertCurency(data.price.current, data.price.currency, "")}</label>
+                  <span class="discount">${convertCurency(data.price.current, data.price.currency, data.price.beforeDiscount)}</span>
             </div>
         <button id="${data._id}" onclick="addToCart('${data._id}')" class="add-to-cart-btn">დამატება</button>`);
   return result;
@@ -252,9 +252,8 @@ async function generateSimilarProduct(element, d) {
               ${generateReview(item.rating) === "" ? `<i class="fa-solid fa-star-half"></i>` : generateReview(item.rating)}
                 </div>
                 <div class="price-wrapper">
-                  <span class="price">${item.price.current} ${item.price.currency === "USD" ? "$" : "₾"}</span>
-                  ${item.price.beforeDiscount === item.price.current ? "" : `<p>${item.price.beforeDiscount} ${item.price.currency === "USD" ? "$" : "₾"}</p>`}
-                </div>
+                                                 <label class="price" for="">${convertCurency(item.price.current, item.price.currency, "")}</label>
+                  <p class="discount">${convertCurency(item.price.current, item.price.currency, item.price.beforeDiscount)}</p>  </div>
                 <div class="button-wrapper">
                   <button onclick="addToCart('${item._id}')" class="add-to-cart-btn">
                     <i class="fa-solid fa-cart-shopping"></i>

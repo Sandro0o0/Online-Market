@@ -156,8 +156,8 @@ async function uploadBestSale(element) {
               <div class="content">
                 <button class="best-price">Best Price</button>
                 <div class="price-wrapper">
-                  <label class="price" for="">${item.price.current} ${item.price.currency === "USD" ? "$" : "₾"}</label>
-                  <p class="discount">${item.price.beforeDiscount} ${item.price.currency === "USD" ? "$" : "₾"}</p>
+                  <label class="price" for="">${convertCurency(item.price.current, item.price.currency, "")}</label>
+                  <p class="discount">${convertCurency(item.price.current, item.price.currency, item.price.beforeDiscount)}</p>
                 </div>
                 
                 <label for="carousel-item"
@@ -237,9 +237,8 @@ async function uploadCategory(element, Name) {
               <div class="content">
               ${item.price.current !== item.price.beforeDiscount ? `<button class="best-price">Best Price</button>` : `<button style="opacity:0;" class="best-price">Best Price</button>`}
                 <div class="price-wrapper">
-                  <label ${item.price.current === item.price.beforeDiscount ? `style="color:#000"` : ``} class="price" for="">${item.price.current} ${item.price.currency === "USD" ? "$" : "₾"}</label>
-                  ${item.price.beforeDiscount === item.price.current ? "" : `<p class="discount">${` ${item.price.beforeDiscount}  ${item.price.currency === "USD" ? "$" : "₾"}`}</p>`}
-                  
+                                   <label class="price" for="">${convertCurency(item.price.current, item.price.currency, "")}</label>
+                  <p class="discount">${convertCurency(item.price.current, item.price.currency, item.price.beforeDiscount)}</p>
                 </div>
                 <label for="carousel-item"
                   >${sliceName(String(item.title))} ...</label
@@ -326,9 +325,8 @@ async function uploadByFilter(element, Name, index) {
               <div class="content">
               ${item.price.current !== item.price.beforeDiscount ? `<button class="best-price">Best Price</button>` : `<button style="opacity:0;" class="best-price">Best Price</button>`}
                 <div class="price-wrapper">
-                  <label ${item.price.current === item.price.beforeDiscount ? `style="color:#000"` : ``} class="price" for="">${item.price.current} ${item.price.currency === "USD" ? "$" : "₾"}</label>
-                  ${item.price.beforeDiscount === item.price.current ? "" : `<p class="discount">${` ${item.price.beforeDiscount}  ${item.price.currency === "USD" ? "$" : "₾"}`}</p>`}
-                  
+                         <label class="price" for="">${convertCurency(item.price.current, item.price.currency, "")}</label>
+                  <p class="discount">${convertCurency(item.price.current, item.price.currency, item.price.beforeDiscount)}</p>
                 </div>
                 <label for="carousel-item"
                   >${sliceName(String(item.title))} ...</label
@@ -422,9 +420,8 @@ async function uploadByFilterBestSale(element, Name, index) {
               <div class="content">
               ${item.price.current !== item.price.beforeDiscount ? `<button class="best-price">Best Price</button>` : `<button style="opacity:0;" class="best-price">Best Price</button>`}
                 <div class="price-wrapper">
-                  <label ${item.price.current === item.price.beforeDiscount ? `style="color:#000"` : ``} class="price" for="">${item.price.current} ${item.price.currency === "USD" ? "$" : "₾"}</label>
-                  ${item.price.beforeDiscount === item.price.current ? "" : `<p class="discount">${` ${item.price.beforeDiscount}  ${item.price.currency === "USD" ? "$" : "₾"}`}</p>`}
-                  
+                       <label class="price" for="">${convertCurency(item.price.current, item.price.currency, "")}</label>
+                  <p class="discount">${convertCurency(item.price.current, item.price.currency, item.price.beforeDiscount)}</p>
                 </div>
                 <label for="carousel-item"
                   >${sliceName(String(item.title))} ...</label
@@ -507,19 +504,5 @@ function imageSeperator(name, brand) {
   return `/assets/productIMG/${name}/${brand}.png`;
 }
 // <----------------------Best-Sale მონაცემების დამუშავება-------------------------->
-
-// <------------------------------შეფასების-სისტემა------------------------------->
-
-// function generateReview(rating) {
-//   const rateAmount = Math.round(rating);
-//   let ratingResult = "";
-//   for (let i = 0; i < rateAmount; i++) {
-//     ratingResult += `
-//      <i class="fa-solid fa-star"></i>`;
-//   }
-//   return ratingResult;
-// }
-
-// <------------------------------შეფასების-სისტემა------------------------------->
 
 // localStorage.clear();

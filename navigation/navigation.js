@@ -10,6 +10,100 @@
 //   }
 // }
 
+//==========================
+//   currentPage,
+// pageSize,
+// searchInput.value,
+// category,
+// brandsInput.value,
+// ratingInput.value,
+// 5,
+// rangeInput.value,
+
+//api.everrest.educata.dev/shop/products/search?page_index=1&page_size=2&keywords=3&category_id=4&brand=5&rating=5&price_min=7&price_max=7
+
+function fillterByUrl() {
+  if (window.location.pathname === " ") {
+  }
+
+  // GET Seatch Params------------------->
+  let param = new URLSearchParams(window.location.search);
+  let pageIndex = param.get("page_index") || "";
+  let pageSize = param.get("page_size") || "";
+  let pageInput = param.get("keywords") || "";
+  let categoryId = param.get("category_id") || "";
+  let pageBrand = param.get("brand") || "";
+  let pageRation = param.get("rating") || "";
+  let pagemin = param.get("price_min") || "";
+  let pageMax = param.get("price_max") || "";
+  // GET Seatch Params------------------->
+  //change style of element-Wrapper
+  document.getElementById(`fillter-wrapper`).style.height = `100%`;
+  //change style of element-Wrapper
+
+  rangeInput.value = pageMax;
+  searchInput.value = pageInput;
+  brandsInput.value = pageBrand;
+  ratingInput.value = pageRation;
+  currentPage = pageIndex;
+
+  currentHtml.textContent = `${currentPage}`;
+
+  if (categoryId === "1" || phoneInput.checked === true) {
+    phoneInput.checked = false;
+    laptopInput.checked = true;
+  } else if (categoryId === "") {
+    laptopInput.checked = false;
+    phoneInput.checked = false;
+  } else {
+    laptopInput.checked = false;
+    phoneInput.checked = true;
+  }
+
+  currentRange.textContent = rangeInput.value;
+  // console.log(id);
+  changeOnFillter(
+    pageIndex,
+    pageSize,
+    pageInput,
+    categoryId,
+    pageBrand,
+    pageRation,
+    pagemin,
+    pageMax,
+  );
+  // console.log(getUrl.href);
+
+  rangeInput.addEventListener(
+    "mousemove",
+    () => (currentRange.textContent = rangeInput.value),
+  );
+
+  rangeInput.addEventListener("mouseup", () => {
+    currentPage = 1;
+    applyFilters();
+  });
+
+  navigate.addEventListener("change", () => {
+    currentPage = 1;
+    applyFilters();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (!currentData || currentData.products.length < pageSize) return;
+    currentPage++;
+    currentHtml.textContent = `${currentPage}`;
+    applyFilters();
+  });
+
+  prevBtn.addEventListener("click", () => {
+    if (currentPage <= 1) return;
+    currentPage--;
+    currentHtml.textContent = `${currentPage}`;
+    applyFilters();
+  });
+}
+
 cart = JSON.parse(localStorage.getItem("cart")) || [];
 // console.log(cart);
 updateCart(cart);
@@ -35,33 +129,8 @@ let currentHtml = document.getElementById(`current-html`);
 let currentData = null;
 let pageSize = 15;
 let currentPage = 1;
-
-currentRange.textContent = rangeInput.value;
-
-rangeInput.addEventListener("input", () => {
-  currentRange.textContent = rangeInput.value;
-  currentPage = 1;
-  applyFilters();
-});
-
-navigate.addEventListener("change", () => {
-  currentPage = 1;
-  applyFilters();
-});
-
-nextBtn.addEventListener("click", () => {
-  if (!currentData || currentData.products.length < pageSize) return;
-  currentPage++;
-  currentHtml.textContent = `${currentPage}`;
-  applyFilters();
-});
-
-prevBtn.addEventListener("click", () => {
-  if (currentPage === 1) return;
-  currentPage--;
-  currentHtml.textContent = `${currentPage}`;
-  applyFilters();
-});
+fillterByUrl();
+const fillterContainer = document.getElementById(`fillter-item-container`);
 
 function applyFilters() {
   let category = "";
@@ -74,7 +143,7 @@ function applyFilters() {
   }
   // console.log(currentPage);
 
-  changeOnFillter(
+  changeURl(
     currentPage,
     pageSize,
     searchInput.value,
@@ -97,15 +166,35 @@ async function changeOnFillter(
   pricemax,
 ) {
   const response = await fetch(
-    `https://api.everrest.educata.dev/shop/products/search?${index ? `page_index=${index}` : ""}&${size ? `&page_size=${size}` : ""}&${keys ? `&keywords=${keys}` : ""}&${category ? `&category_id=${category}` : ""}&${brand ? `&brand=${brand}` : ""}&${rating ? `&rating=${rating}` : ""}&${pricemin ? `&price_min=${pricemin}` : ""}&${pricemax ? `&price_max=${pricemax}` : ""}`,
+    `https://api.everrest.educata.dev/shop/products/search?${index ? `page_index=${index}` : ""}&${size ? `&page_size=${size}` : ""}&${keys ? `&keywords=${keys}` : ""}&${category ? `&category_id=${category}` : ""}&${brand ? `&brand=${brand}` : ""}&${rating ? `&rating=${rating}` : ""}&${pricemin ? `&price_min=${pricemin}` : ""}&${pricemax ? `&price_max=${Math.round(pricemax / 2.66)}` : ""}`,
   );
 
   currentData = await response.json();
   renderProducts(currentData);
 }
+async function changeURl(
+  index,
+  size,
+  keys,
+  category,
+  brand,
+  rating,
+  pricemin,
+  pricemax,
+) {
+  // const response = await fetch(
+  //   `https://api.everrest.educata.dev/shop/products/search?${index ? `page_index=${index}` : ""}&${size ? `&page_size=${size}` : ""}&${keys ? `&keywords=${keys}` : ""}&${category ? `&category_id=${category}` : ""}&${brand ? `&brand=${brand}` : ""}&${rating ? `&rating=${rating}` : ""}&${pricemin ? `&price_min=${pricemin}` : ""}&${pricemax ? `&price_max=${pricemax}` : ""}`,
+  // );
+
+  window.location.href = `?${index ? `page_index=${index}` : ""}${size ? `&page_size=${size}` : ""}${keys ? `&keywords=${keys}` : ""}${category ? `&category_id=${category}` : ""}${brand ? `&brand=${brand}` : ""}${rating ? `&rating=${rating}` : ""}${pricemin ? `&price_min=${pricemin}` : ""}${pricemax ? `&price_max=${pricemax}` : ""}`;
+
+  // currentData = await response.json();
+  // renderProducts(currentData);
+}
 
 function renderProducts(data) {
-  fillterItemContainer.innerHTML = "";
+  // fillterItemContainer.innerHTML = "";
+  fillterContainer.innerHTML = ``;
 
   data.products.forEach((element) => {
     fillterItemContainer.innerHTML += `
@@ -122,15 +211,8 @@ function renderProducts(data) {
           }
 
           <div class="price-wrapper">
-            <label class="price">
-              ${element.price.current}${element.price.currency === "USD" ? "$" : "₾"}
-            </label>
-
-            ${
-              element.price.current !== element.price.beforeDiscount
-                ? `<p class="discount">${element.price.beforeDiscount}</p>`
-                : ""
-            }
+                                                    <label class="price" for="">${convertCurency(element.price.current, element.price.currency, "")}</label>
+                  <p class="discount">${convertCurency(element.price.current, element.price.currency, element.price.beforeDiscount)}</p>
           </div>
 
           <label>${element.title.slice(0, 20)}...</label>

@@ -16,6 +16,50 @@ let register = loginContainer.querySelector(`.registeri`);
 
 const lineContainer = document.querySelector(`.line`);
 
+const forgetPassword =
+  document.getElementsByClassName(`forgot-passwork-link`)[0];
+const forgetTab = document.getElementById(`forget-tab`);
+const forgetForm = document.getElementById(`forget-form`);
+const forgetEmail = document.getElementsByClassName(`forgot-email`)[0];
+console.log(forgetEmail);
+console.log(forgetForm);
+forgetForm.addEventListener(`submit`, async (e) => {
+  e.preventDefault();
+  const response = await fetch(
+    `https://api.everrest.educata.dev/auth/recovery`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: forgetEmail.value,
+      }),
+    },
+  );
+  if (!response.ok) {
+    console.error(`${response.status}`);
+    Swal.fire({
+      title: "დაფიქსირდა შეცდომა",
+      text: "ემაილი ვერ მოიძებნა",
+      icon: "error",
+    });
+    forgetEmail.value = ``;
+    return;
+  }
+  Swal.fire({
+    title: "პაროლს გამოგიგზავნით ემაილზე",
+    text: `${forgetEmail.value}`,
+    icon: "success",
+  });
+  window.location.reload();
+});
+forgetPassword.addEventListener("click", () => {
+  loginContainer.classList.remove(`show`);
+  forgetTab.style.display = `flex`;
+  forgetTab.classList.add(`show`);
+});
+console.log(forgetPassword);
 // <-----------------------Animation-Start-------------------------->
 
 signinBtn.addEventListener("click", () => {
@@ -114,6 +158,8 @@ async function loginUser(email, password) {
     if (authenticated) {
       window.location.href = "../index.html";
     }
+    // console.log(document.getElementsByTagName(`body`));
+    document.getElementsByTagName(`body`)[0].style.overflow = `visible`;
     closeBtn.style.display = `none`;
 
     console.log(decodedPayload);
@@ -132,7 +178,6 @@ async function getCart() {
     const data = await response.json();
 
     authupdateCart(data);
-    console.log(data);
   } catch (error) {
     console.error("Error fetching cart:", error);
   }

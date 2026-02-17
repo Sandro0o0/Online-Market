@@ -27,18 +27,118 @@
     </div>
     <header>
       <div class="header-container">
-        <div class="logo-wrapper">
-          <img src="../assets/58596977_9391707.png" alt="NOT FOUND!" />
-          <h2>SwiftBuy</h2>
-        </div>
+        <a href="/index.html">
+          <div class="logo-wrapper">
+            <img src="../assets/58596977_9391707.png" alt="NOT FOUND!" />
+            <h2>SwiftBuy</h2>
+          </div>
+        </a>
         <nav class="navigation">
-          <div id="login" class="login btn secondary-btn">
+          <a
+            href="/navigation/navigation.html?page_index=1&page_size=15&price_min=5&price_max=511"
+          >
+            <div id="navs" class="nav-item btn primary-btn">
+              <i class="fa-solid fa-grip"></i>
+              <h4>ნავიგაცია</h4>
+            </div>
+          </a>
+          <i id="close" class="close fa-solid fa-x"></i>
+          <div class="sign-in login btn secondary-btn">
             <i class="fa-solid fa-user"></i>
             <h4>შესვლა</h4>
+            <div class="form-cover forms-cover">
+              <span class="login login-model show">
+                <form class="login-form" action="">
+                  <span class="switch-forms-container">
+                    <span class="switch-forms">
+                      <p class="logini">შესვლა</p>
+                      <p class="registeri">რეგისტრაცია</p>
+                    </span>
+                    <div class="line-container">
+                      <div class="line"></div>
+                    </div>
+                  </span>
+                  <h2>შესვლა</h2>
+                  <span id="login-message"> </span>
+
+                  <input class="email" type="text" placeholder="ელ. ფოსტა" />
+                  <input
+                    class="password"
+                    type="password"
+                    placeholder="პაროლი"
+                  />
+                  <p id="forgot-password">
+                    დაგავიწყდა პაროლი?
+                    <a class="forgot-passwork-link" href="">Click</a>
+                  </p>
+                  <button class="primary-btn btn">შესვლა</button>
+                </form>
+              </span>
+              <span class="register register-model">
+                <form class="register-form" action="">
+                  <span class="switch-forms-container">
+                    <span class="switch-forms">
+                      <p class="logini">შესვლა</p>
+                      <p class="registeri">რეგისტრაცია</p>
+                    </span>
+                    <div class="line-container">
+                      <div class="line"></div>
+                    </div>
+                  </span>
+                  <h2>რეგისტრაცია</h2>
+                  <p class="form-error"></p>
+                  <input
+                    required
+                    class="name"
+                    type="text"
+                    placeholder="სახელი"
+                  />
+                  <input required class="age" type="text" placeholder="ასაკი" />
+                  <input
+                    required
+                    class="email"
+                    type="email"
+                    placeholder="ელ. ფოსტა"
+                  />
+                  <input
+                    required
+                    class="phone"
+                    type="tel"
+                    placeholder="ელ. ტელეფონი"
+                  />
+                  <input
+                    required
+                    class="password"
+                    type="password"
+                    placeholder="პაროლი"
+                  />
+
+                  <button class="primary-btn btn">რეგისტრაცია</button>
+                </form>
+              </span>
+            </div>
           </div>
-          <i class="fa-solid fa-calculator btn primary-btn"></i>
+          <a
+            id="account-container"
+            class="account-container"
+            href="../auth/account.html"
+          >
+            <div>
+              <h2 id="account-name-input">S</h2>
+            </div>
+          </a>
         </nav>
       </div>
     </header>
+
+    <script
+      src="https://kit.fontawesome.com/c0c94e5aa2.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script type="module" src="../auth/auth.js"></script>
+    <script src="../script/main.js"></script>
   </body>
 </html>

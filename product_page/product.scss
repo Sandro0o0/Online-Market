@@ -200,8 +200,7 @@
     font-weight: 600;
     font-size: 14px;
     transition: all 0.3s ease;
-
-    background-color: darken($cl-pry, 10%);
+    background-color: darken($cl-pry, 5%);
     &:hover {
       background-color: $cl-pry;
       transform: translateY(-2px);

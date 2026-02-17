@@ -1,4 +1,18 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let searchContainer = document.getElementById(`search-bar`);
+
+console.log(searchContainer);
+
+if (searchContainer) {
+  searchContainer.addEventListener("keydown", (e) => {
+    if (searchContainer.value === " ") {
+      return;
+    }
+    if (e.key === "Enter") {
+      window.location.href = `../navigation/navigation.html?page_index=1&page_size=15&keywords=${searchContainer.value}&price_min=5&price_max=100000`;
+    }
+  });
+}
 
 async function load() {
   addCategorie();
@@ -146,4 +160,19 @@ function generateReview(rating) {
      <i class="fa-solid fa-star"></i>`;
   }
   return ratingResult;
+}
+
+function convertCurency(price, currency, discount) {
+  const rate = {
+    USD: 2.69,
+    GEL: 1,
+  };
+  if (discount !== price && discount !== "") {
+    console.log(discount);
+    return `${Math.round(discount * rate[currency])} ₾ `;
+  } else if (discount === price) {
+    return ``;
+  }
+  // console.log(price);
+  return `${Math.round(price * rate[currency])} ₾`;
 }

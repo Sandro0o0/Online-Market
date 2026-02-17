@@ -11,17 +11,24 @@ async function addCategorie() {
 
   for (let i = 0; i < data.length; i++) {
     categoriesElement.innerHTML += `
-                <div class="categories-items">
-            <div class="categories-content"></div>
-            <div class="box">
+                <div onclick="changeWindow('${data[i]}')" class="categories-items">
+            <div  class="categories-content"></div>
+            <div  class="box">
               <button>&#10095;</button>
             </div>
-            <img src="./assets/brandLogos/${data[i]}.png" alt="NOT FOUND!" />
+            <img  src="./assets/brandLogos/${data[i]}.png" alt="NOT FOUND!" />
           </div>
          `;
   }
   categorieSlider();
 }
+
+// console.log("raw");
+function changeWindow(brand) {
+  console.log(brand);
+  window.location.href = `../navigation/navigation.html?page_index=1&page_size=15&brand=${brand}`;
+}
+// changeWindow("asus");
 
 //  <---------------------------Categories-Slider------------------------------------>
 

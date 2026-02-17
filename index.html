@@ -30,18 +30,22 @@
     </div>
     <header>
       <div class="header-container">
-        <div class="logo-wrapper">
-          <img src="./assets/58596977_9391707.png" alt="NOT FOUND!" />
-          <h2>SwiftBuy</h2>
-        </div>
+        <a href="#">
+          <div class="logo-wrapper">
+            <img src="./assets/58596977_9391707.png" alt="NOT FOUND!" />
+            <h2>SwiftBuy</h2>
+          </div>
+        </a>
         <nav class="navigation">
-          <a href="navigation/navigation.html">
+          <a
+            href="/navigation/navigation.html?page_index=1&page_size=15&price_min=5&price_max=511"
+          >
             <div id="navs" class="nav-item btn primary-btn">
               <i class="fa-solid fa-grip"></i>
               <h4>ნავიგაცია</h4>
             </div>
           </a>
-          <div class="search-container">
+          <div id="search-container" class="search-container">
             <i class="fa-solid fa-magnifying-glass"></i>
             <input id="search-bar" placeholder="ძიება" type="text" />
           </div>
@@ -101,11 +105,30 @@
                   />
                   <p id="forgot-password">
                     დაგავიწყდა პაროლი?
-                    <a class="forgot-passwork-link" href="">Click</a>
+                    <span class="forgot-passwork-link" href="">Click</span>
                   </p>
                   <button class="primary-btn btn">შესვლა</button>
                 </form>
               </span>
+              <!--  -->
+              <span id="forget-tab" class="forget-tab">
+                <form id="forget-form" class="" action="">
+                  <h2>დაგავიწყდა პაროლი</h2>
+                  <span id="login-message"> </span>
+
+                  <input
+                    class="forgot-email"
+                    type="text"
+                    placeholder="ელ. ფოსტა"
+                  />
+
+                  <button type="submit" class="primary-btn btn">
+                    გაგზავნა
+                  </button>
+                </form>
+              </span>
+
+              <!--  -->
               <span class="register register-model">
                 <form class="register-form" action="">
                   <span class="switch-forms-container">
@@ -169,11 +192,17 @@
           <ul>
             <div>
               <i class="fa-solid fa-mobile-screen"></i>
-              <a href="">მობილურები</a>
+              <a
+                href="/navigation/navigation.html?page_index=1&page_size=15&category_id=2&price_min=5&price_max=100000"
+                >მობილურები</a
+              >
             </div>
             <div>
               <i class="fa-solid fa-laptop"></i>
-              <a href="">ლეპტოპები</a>
+              <a
+                href="/navigation/navigation.html?page_index=1&page_size=15&category_id=1&price_min=5&price_max=100000"
+                >ლეპტოპები</a
+              >
             </div>
           </ul>
 
@@ -329,21 +358,25 @@
           </div>
           <button class="arrow right">&#10095;</button>
         </section>
-        <div class="banner">
-          <img
-            id="banner-img-1"
-            src="./assets/productIMG/laptops/acer.png"
-            alt="NOT FOUND!"
-          />
-          <img
-            id="banner-img-2"
-            src="./assets/productIMG/laptops/acer.png"
-            alt="NOT FOUND!"
-          />
-          <div class="banner-container">
-            <h1>ლეპტოპები</h1>
+        <a
+          href="/navigation/navigation.html?page_index=1&page_size=15&category_id=1&price_min=5&price_max=100000"
+        >
+          <div class="banner">
+            <img
+              id="banner-img-1"
+              src="./assets/productIMG/laptops/acer.png"
+              alt="NOT FOUND!"
+            />
+            <img
+              id="banner-img-2"
+              src="./assets/productIMG/laptops/acer.png"
+              alt="NOT FOUND!"
+            />
+            <div class="banner-container">
+              <h1>ლეპტოპები</h1>
+            </div>
           </div>
-        </div>
+        </a>
         <section id="product-cards" class="product-cards phones">
           <h2>ტელეფონები</h2>
 
@@ -411,21 +444,25 @@
           </div>
           <button class="arrow right">&#10095;</button>
         </section>
-        <div class="banner">
-          <img
-            id="banner-img-1"
-            src="./assets/productIMG/laptops/acer.png"
-            alt="NOT FOUND!"
-          />
-          <img
-            id="banner-img-2"
-            src="./assets/—Pngtree—apple - iphone 11 pro_14745655.png"
-            alt="NOT FOUND!"
-          />
-          <div class="banner-container">
-            <h1>ტელეფონები</h1>
+        <a
+          href="/navigation/navigation.html?page_index=1&page_size=15&category_id=2&price_min=5&price_max=100000"
+        >
+          <div class="banner">
+            <img
+              id="banner-img-1"
+              src="./assets/productIMG/laptops/acer.png"
+              alt="NOT FOUND!"
+            />
+            <img
+              id="banner-img-2"
+              src="./assets/—Pngtree—apple - iphone 11 pro_14745655.png"
+              alt="NOT FOUND!"
+            />
+            <div class="banner-container">
+              <h1>ტელეფონები</h1>
+            </div>
           </div>
-        </div>
+        </a>
         <section id="product-cards" class="product-cards laptops">
           <h2>ლეპტოპები <span>(ფასდაკლებით)</span></h2>
           <button class="arrow left">&#10094;</button>
@@ -574,7 +611,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
     <script src="auth/auth.js"></script>
-    <script src="script/categories.js"></script>
+    <script src="./script/categories.js"></script>
     <script src="./script/package.js"></script>
     <script src="./script/product.js"></script>
     <script src="./script/main.js"></script>

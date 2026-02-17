@@ -63,6 +63,10 @@
   font-size: 17px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body::-webkit-scrollbar {
   width: 7px;
 }
@@ -159,6 +163,9 @@ header {
   align-items: center;
   justify-content: space-between;
   height: 70px;
+}
+.header-container a {
+  text-decoration: none;
 }
 .header-container .logo-wrapper {
   display: flex;
@@ -321,6 +328,7 @@ main .main-container {
   width: 230px;
   background-color: #fff;
   box-shadow: 0px 0px 10px -7px #000;
+  height: 100%;
 }
 .hero ul div {
   display: flex;
@@ -551,6 +559,11 @@ main .main-container {
 }
 #laptops-only .arrow {
   position: absolute;
+}
+
+a:has(.banner) {
+  text-decoration: none;
+  color: #000;
 }
 
 .banner {
@@ -1151,4 +1164,35 @@ body:has(.forms-cover.active) .forms-cover {
   font-size: 13px;
   letter-spacing: 1px;
   font-weight: 800;
+}
+
+.forget-tab {
+  display: none;
+  justify-self: center;
+  align-self: center;
+  position: relative;
+  bottom: 25%;
+  z-index: 1000;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px -5px #333;
+  text-align: center;
+}
+.forget-tab form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.forget-tab form h2 {
+  font-size: 18px;
+}
+.forget-tab form input {
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid #fd5b4c;
+  outline: none;
+}
+.forget-tab form button {
+  margin: auto;
 }/*# sourceMappingURL=index.css.map */
