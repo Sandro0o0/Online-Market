@@ -176,6 +176,9 @@ async function getCart() {
       },
     });
     const data = await response.json();
+    if (!response.ok) {
+      return;
+    }
 
     authupdateCart(data);
   } catch (error) {
@@ -184,7 +187,7 @@ async function getCart() {
 }
 async function authupdateCart(data) {
   cart = [];
-  // localStorage.removeItem("cart");
+  localStorage.setItem("cart", JSON.stringify(cart));
 
   for (let item of data.products) {
     try {
@@ -212,8 +215,6 @@ async function authupdateCart(data) {
   updateCart(cart);
 }
 async function checkAuthentication() {
-  // console.log(localStorage.getItem("refreshToken"));s
-
   if (localStorage.getItem("accessToken")) {
     document.querySelector(`.sign-in`).style.display = "none";
 

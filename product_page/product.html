@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../styles/index.css" />
     <link rel="stylesheet" href="./product.css" />
     <link rel="stylesheet" href="../Placeholders/preload.css" />
+    <link rel="icon" href="../assets/58596977_9391707.png" />
     <title>Product</title>
   </head>
   <body>
@@ -102,9 +103,25 @@
                   />
                   <p id="forgot-password">
                     დაგავიწყდა პაროლი?
-                    <a class="forgot-passwork-link" href="">Click</a>
+                    <span class="forgot-passwork-link" href="">Click</span>
                   </p>
                   <button class="primary-btn btn">შესვლა</button>
+                </form>
+              </span>
+              <span id="forget-tab" class="forget-tab">
+                <form id="forget-form" class="" action="">
+                  <h2>დაგავიწყდა პაროლი</h2>
+                  <span id="login-message"> </span>
+
+                  <input
+                    class="forgot-email"
+                    type="text"
+                    placeholder="ელ. ფოსტა"
+                  />
+
+                  <button type="submit" class="primary-btn btn">
+                    გაგზავნა
+                  </button>
                 </form>
               </span>
               <span class="register register-model">
@@ -183,7 +200,7 @@
             </div>
           </div>
           <div id="product-holder" class="product-holder">
-            <nav>
+            <nav class="tab">
               <div class="links">
                 <div
                   class="placeholder-item"
@@ -216,6 +233,7 @@
                   style="width: 100%; height: 250px"
                 ></div>
               </div>
+
               <div style="width: 70%" class="description">
                 <ul>
                   <li>

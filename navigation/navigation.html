@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/index.css" />
     <link rel="stylesheet" href="navigation.css" />
+    <link rel="icon" href="../assets/58596977_9391707.png" />
     <title>Navigaton</title>
   </head>
   <body>
@@ -85,9 +86,25 @@
                   />
                   <p id="forgot-password">
                     დაგავიწყდა პაროლი?
-                    <a class="forgot-passwork-link" href="">Click</a>
+                    <span class="forgot-passwork-link" href="">Click</span>
                   </p>
                   <button class="primary-btn btn">შესვლა</button>
+                </form>
+              </span>
+              <span id="forget-tab" class="forget-tab">
+                <form id="forget-form" class="" action="">
+                  <h2>დაგავიწყდა პაროლი</h2>
+                  <span id="login-message"> </span>
+
+                  <input
+                    class="forgot-email"
+                    type="text"
+                    placeholder="ელ. ფოსტა"
+                  />
+
+                  <button type="submit" class="primary-btn btn">
+                    გაგზავნა
+                  </button>
                 </form>
               </span>
               <span class="register register-model">
@@ -148,9 +165,9 @@
     </header>
 
     <section id="navigate" class="navigate">
-      <aside class="sidebar">
+      <i id="navigate-menu" class="fa-solid fa-bars"></i>
+      <aside id="sidebar" class="sidebar">
         <h2>გაფილტრე პროდუქტი 🧮</h2>
-
         <div class="filter-block">
           <label>ძიება</label>
           <div class="search-container">
@@ -162,56 +179,57 @@
             />
           </div>
         </div>
-
-        <div class="filter-block">
-          <label>ფასი</label>
-          <div class="price-range">
-            <div class="range-values">
-              <span id="min-val">₾5</span>
-              <span style="color: orange" id="current-range">200</span>
-              <span id="max-val">₾20000</span>
+        <div class="blocks-wrapper">
+          <div class="filter-block">
+            <label>ფასი</label>
+            <div class="price-range">
+              <div class="range-values">
+                <span id="min-val">₾5</span>
+                <span style="color: orange" id="current-range">200</span>
+                <span id="max-val">₾20000</span>
+              </div>
+              <input id="range" type="range" min="30" max="20000" value="500" />
             </div>
-            <input id="range" type="range" min="30" max="20000" value="500" />
           </div>
-        </div>
 
-        <div class="filter-block">
-          <label>კატეგორია</label>
-          <div class="checkbox-group">
-            <label
-              ><input id="check-laptops" value="1" type="checkbox" />
-              ლეპტოპები</label
-            >
-            <label
-              ><input id="check-phones" value="2" type="checkbox" />
-              ტელეფონები</label
-            >
+          <div class="filter-block">
+            <label>კატეგორია</label>
+            <div class="checkbox-group">
+              <label
+                ><input id="check-laptops" value="1" type="checkbox" />
+                ლეპტოპები</label
+              >
+              <label
+                ><input id="check-phones" value="2" type="checkbox" />
+                ტელეფონები</label
+              >
+            </div>
+            <div class="brands">
+              <label>ბრენდები</label>
+              <select id="brands-input">
+                <option value="">ბრენდი</option>
+                <option value="asus">Asus</option>
+                <option value="apple">Apple</option>
+                <option value="honor">Honor</option>
+                <option value="acer">Acer</option>
+                <option value="dell">Dell</option>
+                <option value="lenovo">Lenovo</option>
+                <option value="lg">Lg</option>
+                <option value="msi">Msi</option>
+                <option value="samsung">Samsung</option>
+                <option value="xiaomi">Xiaomi</option>
+              </select>
+            </div>
           </div>
-          <div class="brands">
-            <label>ბრენდები</label>
-            <select id="brands-input">
-              <option value="">ბრენდი</option>
-              <option value="asus">Asus</option>
-              <option value="apple">Apple</option>
-              <option value="honor">Honor</option>
-              <option value="acer">Acer</option>
-              <option value="dell">Dell</option>
-              <option value="lenovo">Lenovo</option>
-              <option value="lg">Lg</option>
-              <option value="msi">Msi</option>
-              <option value="samsung">Samsung</option>
-              <option value="xiaomi">Xiaomi</option>
+
+          <div class="filter-block">
+            <label>რეიტინგი</label>
+            <select id="rating-input">
+              <option value="">ყველა</option>
+              <option value="4">4★ და ზემოთ</option>
+              <option value="3">3★ და ზემოთ</option>
             </select>
           </div>
-        </div>
-
-        <div class="filter-block">
-          <label>რეიტინგი</label>
-          <select id="rating-input">
-            <option value="">ყველა</option>
-            <option value="4">4★ და ზემოთ</option>
-            <option value="3">3★ და ზემოთ</option>
-          </select>
         </div>
       </aside>
       <div id="fillter-wrapper" class="fillter-wrapper">

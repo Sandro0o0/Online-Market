@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/index.css" />
     <link rel="stylesheet" href="/cart/cart.css" />
+    <link rel="icon" href="../assets/58596977_9391707.png" />
     <title>Online Market</title>
   </head>
   <body>
@@ -18,10 +19,6 @@
           <a href="">სავაჭრო პოლიტიკა</a>
           <a href="">განვადება</a>
           <a href="">ფილიალები</a>
-          <select name="lang">
-            <option value="">ENG</option>
-            <option value="">GEO</option>
-          </select>
         </ul>
       </div>
     </div>
@@ -69,9 +66,25 @@
                   />
                   <p id="forgot-password">
                     დაგავიწყდა პაროლი?
-                    <a class="forgot-passwork-link" href="">Click</a>
+                    <span class="forgot-passwork-link" href="">Click</span>
                   </p>
                   <button class="primary-btn btn">შესვლა</button>
+                </form>
+              </span>
+              <span id="forget-tab" class="forget-tab">
+                <form id="forget-form" class="" action="">
+                  <h2>დაგავიწყდა პაროლი</h2>
+                  <span id="login-message"> </span>
+
+                  <input
+                    class="forgot-email"
+                    type="text"
+                    placeholder="ელ. ფოსტა"
+                  />
+
+                  <button type="submit" class="primary-btn btn">
+                    გაგზავნა
+                  </button>
                 </form>
               </span>
               <span class="register register-model">
@@ -130,6 +143,44 @@
         </nav>
       </div>
     </header>
+    <main>
+      <div class="main-container">
+        <div class="cart-head">
+          <h2 id="product-amount">კალათაში არის 0 ნივთი</h2>
+          <div id="clear-cart-container">
+            <i id="remove-all" class="fa-solid fa-trash"></i>
+            <span>გასუფთავება</span>
+          </div>
+        </div>
+
+        <!-- head_END -->
+
+        <div class="cart-holder">
+          <div id="cart-body-container" class="cart-body-container">
+            <img src="../assets/emptybag.svg" alt="" />
+          </div>
+          <div class="cart-pricing-wrapper">
+            <div class="price-content">
+              <div class="cost">
+                <h3>ღირებულება:</h3>
+                <span id="cart-total-price">0</span>
+              </div>
+              <div class="dicount-total">
+                <h3>ფასდაკლებამდე:</h3>
+                <span id="before-discount-price">0</span>
+              </div>
+              <div class="pay-amount">
+                <h3>გადასახდელი თანხა:</h3>
+                <span id="total">0</span>
+              </div>
+            </div>
+            <button onclick="checkOut()" class="btn primary-btn">
+              გადახდა
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
 
     <script
       src="https://kit.fontawesome.com/c0c94e5aa2.js"
@@ -140,5 +191,6 @@
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
     <script type="module" src="../auth/auth.js"></script>
     <script src="../script/main.js"></script>
+    <script src="./cart.js"></script>
   </body>
 </html>

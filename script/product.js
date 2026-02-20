@@ -97,7 +97,6 @@ async function saveCart(cartNew) {
           quantity: 1,
         }),
       });
-      // localStorage.setItem("cart", JSON.stringify(cart));
       return;
     } else {
       let response = await fetch(

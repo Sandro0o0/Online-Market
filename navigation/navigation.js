@@ -21,6 +21,23 @@
 // rangeInput.value,
 
 //api.everrest.educata.dev/shop/products/search?page_index=1&page_size=2&keywords=3&category_id=4&brand=5&rating=5&price_min=7&price_max=7
+const navigateMenu = document.getElementById(`navigate-menu`);
+const sideBar = document.getElementById(`sidebar`);
+console.log(navigateMenu.className);
+
+navigateMenu.addEventListener("click", () => {
+  if (navigateMenu.className === "fa-solid fa-bars") {
+    navigateMenu.classList.remove("fa-solid", "fa-bars");
+    navigateMenu.classList.add("fa-solid", "fa-x");
+    // navigateMenu.classList.add("fa-x");
+    sideBar.style.display = `flex`;
+  } else {
+    navigateMenu.classList.remove("fa-solid", "fa-x");
+    navigateMenu.classList.add("fa-solid", "fa-bars");
+    // navigateMenu.classList.add("fa-bars");
+    sideBar.style.display = `none`;
+  }
+});
 
 function fillterByUrl() {
   if (window.location.pathname === " ") {
@@ -306,10 +323,9 @@ async function addToCart(productid) {
 
     return;
   }
-  localStorage.setItem("cart", JSON.stringify(cart));
-  cart = JSON.parse(localStorage.getItem(`cart`));
+  // localStorage.setItem("cart", JSON.stringify(cart));
+  // cart = JSON.parse(localStorage.getItem(`cart`));
   cart.push(cartNew);
-
   saveCart(cartNew);
   updateCart(cart);
 }

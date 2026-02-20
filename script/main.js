@@ -40,6 +40,7 @@ async function removeProduct(d) {
   if (index !== -1) {
     cart.splice(index, 1);
   }
+
   let response = await fetch(
     `https://api.everrest.educata.dev/shop/cart/product`,
     {
@@ -53,6 +54,13 @@ async function removeProduct(d) {
       }),
     },
   );
+  if (window.location.pathname === `/cart/cart.html`) {
+    const cartBody = document.getElementById(`cart-body-container`);
+    console.log(cartBody);
+    let item = document.getElementById(`${d}`);
+    console.log(item);
+    await updateCartPage();
+  }
 
   updateCart(cart);
 }
@@ -63,8 +71,9 @@ async function increament(d) {
     alert(`მარაგში არ არის საკმარისი`);
     return;
   }
-  console.log(found);
   found.quantiti++;
+
+  console.log(found);
   let response = await fetch(
     `https://api.everrest.educata.dev/shop/cart/product`,
     {
@@ -79,6 +88,15 @@ async function increament(d) {
       }),
     },
   );
+  if (window.location.pathname === `/cart/cart.html`) {
+    const cartBody = document.getElementById(`cart-body-container`);
+    console.log(cartBody);
+
+    let item = document.getElementById(`${d}`);
+    let e = item.querySelector(`#product-quantiti`);
+    e.textContent = `${found.quantiti}`;
+    updateCartPage();
+  }
   let data = await response.json();
   updateCart(cart);
 }
@@ -88,6 +106,7 @@ async function decreament(d) {
     return;
   } else {
     found.quantiti--;
+
     let response = await fetch(
       `https://api.everrest.educata.dev/shop/cart/product`,
       {
@@ -102,12 +121,31 @@ async function decreament(d) {
         }),
       },
     );
+
+    if (window.location.pathname === `/cart/cart.html`) {
+      const cartBody = document.getElementById(`cart-body-container`);
+      console.log(cartBody);
+
+      let item = document.getElementById(`${d}`);
+      console.log(found);
+      let e = item.querySelector(`#product-quantiti`);
+      e.textContent = `${found.quantiti}`;
+      console.log(e);
+      console.log(d);
+      updateCartPage();
+      // item.getElementById;
+      // return;
+    }
   }
   updateCart(cart);
 }
 // <--------------------cart-manipulation------------------->
 function updateCart(cart) {
   const cartWrapper = document.getElementById(`cart-body`);
+
+  if (!cartWrapper) {
+    return;
+  }
 
   cartWrapper.innerHTML = ``;
   if (cart.length < 1) {
@@ -175,4 +213,28 @@ function convertCurency(price, currency, discount) {
   }
   // console.log(price);
   return `${Math.round(price * rate[currency])} ₾`;
+}
+
+async function updateCartPage() {
+  try {
+    const accessToken = localStorage.getItem(`accessToken`);
+    const response = await fetch(`https://api.everrest.educata.dev/shop/cart`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    if (!response.ok) {
+      return;
+    }
+
+    let data = await response.json();
+    const itemCountElement = document.getElementById(`product-amount`);
+    itemCountElement.innerHTML = `შენს კალათაში არის ${data.total.products} ნივთი`;
+    getTotal();
+  } catch (error) {
+    console.error(error);
+  }
 }

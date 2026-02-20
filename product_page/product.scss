@@ -492,3 +492,227 @@
     color: #fff;
   }
 }
+
+.user-reviews {
+  margin: 2.5rem 0 1.5rem;
+  padding: 1.8rem 2rem;
+  background: #f8f9fa;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(black, 0.06);
+
+  h3 {
+    margin: 0 0 1.5rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #222;
+    position: relative;
+    padding-bottom: 0.8rem;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: $cl-pry;
+      border-radius: 2px;
+    }
+  }
+
+  .no-reviews,
+  .error {
+    color: #777;
+    font-style: italic;
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 1.05rem;
+  }
+}
+
+.review-item {
+  padding: 1.4rem 0;
+  border-bottom: 1px solid rgba(#ddd, 0.6);
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .review-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.9rem;
+    flex-wrap: wrap;
+
+    .review-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba($cl-pry, 0.15);
+      flex-shrink: 0;
+      background: #eee; // fallback
+    }
+
+    > div {
+      flex: 1;
+      min-width: 0;
+
+      strong {
+        display: block;
+        font-size: 1.05rem;
+        color: #111;
+        margin-bottom: 0.25rem;
+      }
+    }
+
+    .review-stars {
+      color: #f1c40f;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+
+    time {
+      font-size: 0.875rem;
+      color: #888;
+      margin-left: auto;
+      white-space: nowrap;
+    }
+  }
+
+  .review-comment {
+    margin: 0;
+    line-height: 1.6;
+    color: #444;
+    font-size: 1rem;
+
+    &:empty::before {
+      content: "კომენტარის გარეშე";
+      color: #aaa;
+      font-style: italic;
+    }
+  }
+}
+
+// ────────────────────────────────────────────────
+// Optional: if you want expandable reviews or "load more"
+// ────────────────────────────────────────────────
+.review-toggle-btn {
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.5rem;
+  background: rgba($cl-pry, 0.08);
+  color: $cl-pry;
+  border: 1px solid rgba($cl-pry, 0.3);
+  border-radius: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba($cl-pry, 0.15);
+    transform: translateY(-1px);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .user-reviews {
+    padding: 1.4rem 1.2rem;
+    margin: 1.8rem 0;
+  }
+
+  .review-header {
+    gap: 0.8rem;
+
+    time {
+      width: 100%;
+      margin-top: 0.4rem;
+      text-align: right;
+    }
+  }
+
+  .review-avatar {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+@media (max-width: 1124px) {
+  .product-container {
+    // margin-top: 15px;
+    display: block;
+  }
+  #product-price {
+    top: 0px;
+    position: relative;
+    margin-top: 15px;
+  }
+}
+@media (max-width: 700px) {
+  .product-content {
+    flex-direction: column !important;
+    align-items: center;
+
+    ul {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr);
+      // flex-direction: row !important;
+      // flex-wrap: wrap;
+      li {
+        width: 100px;
+      }
+    }
+    // justify-content: center !important;
+  }
+}
+
+@media (max-width: 550px) {
+  .product-container .product-holder nav {
+    display: flex;
+    flex-direction: column;
+  }
+  .product-container .product-content .description ul {
+    display: flex !important;
+    // text-align: center
+    li {
+      width: 100%;
+      text-align: center;
+
+      .review {
+        display: flex;
+        justify-content: center;
+        // text-align: center;
+      }
+    }
+  }
+  .img-wrapper {
+    min-width: 100%;
+  }
+  .alternative-img {
+    margin: 0;
+
+    img {
+      max-width: 100%;
+    }
+    // position: relative;
+    // left: -25%;
+    // display: flex;
+    // justify-self: start;
+    // min-width: 100% !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .alternative-img {
+    // max-width: 100% !important
+    gap: 0px !important;
+    margin: 0 !important;
+
+    .alternative-img-wrapper {
+      max-width: 70%;
+    }
+  }
+}

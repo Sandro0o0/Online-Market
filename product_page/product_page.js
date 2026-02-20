@@ -198,12 +198,15 @@ function generateProductContent(element, data) {
               </div>
 
             </div>
+            
             <div class="product-description">
             <h2>პროდუქტის დახასიათება</h2>
             <br/
             <p>${data.description}</p>
             </div>
           `)}`;
+
+  console.log(data.ratings);
 
   rateUs(data._id);
   console.log(element);
@@ -499,7 +502,7 @@ async function saveCart(cartNew) {
     }
   } catch (error) {
     console.error("Error saving to cart:", error);
-    alert("შეცდომა პროდუქტის დამატებისას");
+    // alert("შეცდომა პროდუქტის დამატებისას");
   }
 }
 
