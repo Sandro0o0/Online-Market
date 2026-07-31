@@ -1,12 +1,13 @@
 from rest_framework import serializers
 from .models import Product, Price, Rating
+from category.serializers import CategorySerializer
+from category.models import Category
 
 class PriceSerializer(serializers.ModelSerializer):
-    current = serializers.ReadOnlyField(source="current")  # expose calculated price
 
     class Meta:
         model = Price
-        fields = ["currency", "before_discount", "discount_percentage", "current"]
+        fields = ["currency", "beforeDiscount", "discountPercentage", "current"]
 
 
 class RatingSerializer(serializers.ModelSerializer):
@@ -16,23 +17,29 @@ class RatingSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    price = PriceSerializer(read_only=True)  
-    ratings = RatingSerializer(many=True, read_only=True) 
-    rating = serializers.ReadOnlyField(source="rating")  
+    category= serializers.PrimaryKeyRelatedField(
+        queryset=Category.objects.all(),
+        write_only=True
+    )
 
+    # For output: return the full nested Category object
+    category_detail = CategorySerializer(source='category', read_only=True)
+
+    price = PriceSerializer()
     class Meta:
         model = Product
-        fields = [
-            "id",
-            "title",
-            "description",
-            "issue_date",
-            "thumbnail",
-            "stock",
-            "warranty",
-            "images",
-            "category",
-            "price",
-            "ratings",
-            "rating",  
-        ]
+        fields = '__all__'
+
+    def create(self, validated_data):
+
+        price_data = validated_data.pop('price')
+        # category_data = validated_data.pop('category')
+
+        # category = Category.objects.get(id=category_data)
+
+        price = Price.objects.create(**price_data)
+        product = Product.objects.create(price=price, **validated_data)
+
+
+
+        return product

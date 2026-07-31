@@ -1,6 +1,7 @@
 from django.db import models
 from category.models import Category
 from django.db.models import Avg
+from decimal import Decimal
 
 # Create your models here.
 
@@ -11,16 +12,13 @@ class Price(models.Model):
     beforeDiscount= models.PositiveIntegerField()
     discountPercentage= models.DecimalField(max_digits=5, decimal_places=3)
 
+
     @property
-    def calcPrice(self):
-        before = self.beforeDiscount
-        percentage = self.discountPercentage
-
-        result = before / 100 *percentage
-
-        return before - result 
+    def current(self):
+        return self.beforeDiscount * (Decimal("100") - self.discountPercentage) / Decimal("100")
+    
     def __str__(self):
-        return self.calcPrice  
+        return str(self.current)  
 
 
 
@@ -30,12 +28,12 @@ class Price(models.Model):
 
 
 class Product(models.Model):
-    price = models.OneToOneField(Price, on_delete=models.CASCADE )
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    price = models.OneToOneField(Price, on_delete=models.CASCADE, null=True,  blank= True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True,  blank= True)
     title = models.CharField(max_length=200, blank=False, null=False)
     description = models.TextField(blank=True)
     issueDate = models.DateField(auto_now_add=True)
-    thumbnail = models.ImageField()
+    thumbnail = models.ImageField(null=True, blank=True)
     stock = models.PositiveIntegerField()
     warranty = models.PositiveIntegerField()
     images = models.ImageField(null=True, blank=True)
@@ -56,7 +54,7 @@ class Product(models.Model):
 class Rating(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="ratings")
     user = models.ForeignKey("auth.User", on_delete=models.CASCADE)  # or your custom User model
-    value = models.PositiveIntegerField()  # e.g. 1–5 stars
+    value = models.PositiveIntegerField()  
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
