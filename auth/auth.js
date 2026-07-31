@@ -1,8 +1,5 @@
+const API_BASE_URL = "http://localhost:8000";
 let authenticated = false;
-// localStorage.setItem("cart", []);
-// console.log(Date.now());
-
-// let cart = JSON.parse(localStorage.getItem("cart")) || [];
 checkAuthentication();
 
 const signinBtn = document.querySelector(`.sign-in`);
@@ -21,8 +18,8 @@ const forgetPassword =
 const forgetTab = document.getElementById(`forget-tab`);
 const forgetForm = document.getElementById(`forget-form`);
 const forgetEmail = document.getElementsByClassName(`forgot-email`)[0];
-console.log(forgetEmail);
-console.log(forgetForm);
+// console.log(forgetEmail);
+// console.log(forgetForm);
 forgetForm.addEventListener(`submit`, async (e) => {
   e.preventDefault();
   const response = await fetch(
@@ -59,7 +56,7 @@ forgetPassword.addEventListener("click", () => {
   forgetTab.style.display = `flex`;
   forgetTab.classList.add(`show`);
 });
-console.log(forgetPassword);
+// console.log(forgetPassword);
 // <-----------------------Animation-Start-------------------------->
 
 signinBtn.addEventListener("click", () => {
@@ -96,38 +93,44 @@ registerForm.addEventListener("submit", (e) => {
   const name = registerForm.getElementsByClassName(`name`)[0].value;
   const email = registerForm.getElementsByClassName(`email`)[0].value;
   const password = registerForm.getElementsByClassName(`password`)[0].value;
-  const phone = registerForm.getElementsByClassName(`phone`)[0].value;
-  const age = registerForm.getElementsByClassName(`age`)[0].value;
+  const confirmPassword =
+    registerForm.getElementsByClassName(`confirm-password`)[0].value;
+  // const phone = registerForm.getElementsByClassName(`phone`)[0].value;
+  // const age = registerForm.getElementsByClassName(`age`)[0].value;
 
-  registerUser(name, email, password, age, phone);
+  if (password !== confirmPassword) {
+    Swal.fire({
+      title: "პაროლები არ ემთხვევა",
+      icon: "error",
+    });
+    return;
+  }
+  registerUser(name, email, password, confirmPassword);
 });
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const email = loginForm.getElementsByClassName(`email`)[0].value;
+  const username = loginForm.getElementsByClassName(`username`)[0].value;
   const password = loginForm.getElementsByClassName(`password`)[0].value;
-  await loginUser(email, password);
+  await loginUser(username, password);
 });
 
-async function loginUser(email, password) {
+async function loginUser(username, password) {
   try {
-    const response = await fetch(
-      `https://api.everrest.educata.dev/auth/sign_in`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
+    const response = await fetch(`${API_BASE_URL}/auth/sign_in`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    );
+
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    });
 
     if (!response.ok) {
       document.getElementById(`login-message`).textContent =
-        `პაროლი ან ემაილი არასწორია`;
+        `პაროლი ან მომხმარებლის სახელი არასწორია`;
       document.getElementById(`login-message`).style.color = `red`;
       throw new Error("Failed to login");
     }
@@ -225,19 +228,16 @@ async function checkAuthentication() {
       return;
     }
 
-    const response = await fetch(
-      "https://api.everrest.educata.dev/auth/refresh",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          refresh_token: refreshToken,
-        }),
+    const response = await fetch(`${API_BASE_URL}/auth/refresh`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
       },
-    );
+      body: JSON.stringify({
+        refresh_token: refreshToken,
+      }),
+    });
 
     const data = await response.json();
     console.log(data.access_token);
@@ -292,27 +292,24 @@ function convertCurrency(currency, price) {
     return `${price}${currency === "USD" ? "$" : "₾"}`;
   }
 }
-async function registerUser(name, email, password, age, phone) {
+async function registerUser(name, email, password, confirmPassword) {
   try {
-    const response = await fetch(
-      `https://api.everrest.educata.dev/auth/sign_up`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstName: name,
-          lastName: "string",
-          age: age,
-          email: email,
-          password: password,
-          address: "ragac",
-          phone: `+995 ${phone}`,
-          zipcode: "12345-6789",
-          avatar: "https://chatgpt.com/",
-          gender: "MALE",
-        }),
-      },
-    );
+    const response = await fetch(`${API_BASE_URL}/auth/sign_up`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: name,
+        password: password,
+        confirm_password: password,
+        email: email,
+        // age: age,
+        // address: "ragac",
+        // phone: `+995 ${phone}`,
+        // zipcode: "12345-6789",
+        // avatar: "https://chatgpt.com/",
+        // gender: "MALE",
+      }),
+    });
     let data = await response.json();
     let formError = document.getElementsByClassName(`form-error`)[0];
     formError.textContent = `${checkRegValidations(data.errorKeys, formError)}`;

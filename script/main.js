@@ -1,7 +1,7 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let searchContainer = document.getElementById(`search-bar`);
 
-console.log(searchContainer);
+// console.log(searchContainer);
 
 if (searchContainer) {
   searchContainer.addEventListener("keydown", (e) => {
@@ -206,7 +206,7 @@ function convertCurency(price, currency, discount) {
     GEL: 1,
   };
   if (discount !== price && discount !== "") {
-    console.log(discount);
+    // console.log(discount);
     return `${Math.round(discount * rate[currency])} ₾ `;
   } else if (discount === price) {
     return ``;

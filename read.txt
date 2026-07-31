@@ -1,0 +1,3 @@
+shop/products/all - უნდა ჰქონდეს პაგინაციაები page_size, page_index
+
+
