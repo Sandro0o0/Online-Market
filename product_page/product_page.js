@@ -1,61 +1,5 @@
-// let authenticated = false;
-// checkAuthentication();
-// let cart = JSON.parse(localStorage.getItem("cart")) || [];
+const API_BASE_URL = "http://localhost:8000";
 
-// async function checkAuthentication() {
-//   if (localStorage.getItem("accessToken")) {
-//     authenticated = true;
-//     console.log("User is authenticated");
-
-//     await getCart();
-//   }
-// }
-
-// async function getCart() {
-//   console.log(cart);
-//   try {
-//     const response = await fetch(`https://api.everrest.educata.dev/shop/cart`, {
-//       method: "GET",
-//       headers: {
-//         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-//       },
-//     });
-//     const data = await response.json();
-//     await authupdateCart(data);
-//     console.log(data);
-//   } catch (error) {
-//     console.error("Error fetching cart:", error);
-//   }
-// }
-
-// async function authupdateCart(data) {
-//   cart = [];
-
-//   for (let item of data.products) {
-//     try {
-//       let response = await fetch(
-//         `https://api.everrest.educata.dev/shop/products/id/${item.productId}`,
-//       );
-//       let productData = await response.json();
-
-//       cart.push({
-//         title: productData.title,
-//         price: productData.price.current,
-//         currency: productData.price.currency,
-//         id: productData._id,
-//         stock: productData.stock,
-//         image: `../assets/productIMG/${productData.category.name}/${productData.brand}.png`,
-//         quantiti: item.quantity,
-//       });
-//     } catch (error) {
-//       console.error(`Error fetching product ${item.productId}:`, error);
-//     }
-//   }
-
-//   updateCart(cart);
-// }
-
-// updateCart(cart);
 async function productPageLoad() {
   function getProductIdFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -63,7 +7,7 @@ async function productPageLoad() {
   }
   const productId = getProductIdFromURL();
   const fetchById = await fetch(
-    `https://api.everrest.educata.dev/shop/products/id/${productId}`,
+    `${API_BASE_URL}/shop/products/id/${productId}`,
   );
   let data = await fetchById.json();
 
@@ -95,17 +39,17 @@ productPageLoad();
 function generateProductContent(element, data) {
   sessionStorage.setItem(
     "Current Image",
-    `../assets/productIMG/${data.category.name}/${data.brand}.png`,
+    `../assets/productIMG/${data.category_detail.name}/${data.brand}.png`,
   );
   let result = `${(element.innerHTML = `
             <nav>
-              <div class="links">
+              <div class="links">   
                 <a href="/index.html">
                   <h5>მთავარი</h5>
                 </a>
                 &#10095;
                 <a href="">
-                  <h4>${data.category.name === "laptops" ? "ლეპტოპები" : "ტელეფონები"}</h4>
+                  <h4>${data.category_detail.name === "laptops" ? "ლეპტოპები" : "ტელეფონები"}</h4>
                 </a>
                 &#10095;
                 <a href="">
@@ -165,7 +109,7 @@ function generateProductContent(element, data) {
                   </li>
                   <li>
                     კატეგორია :
-                    <p>-${data.category.name.toUpperCase()}</p>
+                    <p>-${data.category_detail.name.toUpperCase()}</p>
                   </li>
                   <li>
                     გამოშვების თარიღი :
@@ -186,7 +130,7 @@ function generateProductContent(element, data) {
                   <li>
                   რეიტინგი:
                     <div id="review" class="review">
-                     ${generateReview(data.rating)}(${data.ratings.length})
+                     ${generateReview(data.ratings)}(${data.rates.length})
                     </div>
                   </li>
                   <li>
@@ -224,14 +168,13 @@ function generatePrice(element, data) {
 }
 
 async function generateSimilarProduct(element, d) {
-  let response = await fetch(
-    `https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=38`,
-  );
+  let response = await fetch(`${API_BASE_URL}/shop/products/all/`);
   let data = await response.json();
 
   let fillterBycategory = data.products.filter(
     (category) =>
-      category.category.name === `${d.category.name}` && category._id !== d._id,
+      category.category_detail.name === `${d.category_detail.name}` &&
+      category._id !== d._id,
   );
   console.log(fillterBycategory);
 
@@ -242,7 +185,7 @@ async function generateSimilarProduct(element, d) {
         <div  id="${item._id}" class="similar-carousel-item">
               <div class="image-wrapper">
                 <img
-                  src= "${imageSeperator(item.category.name, item.brand)}"
+                  src= "${imageSeperator(item.category_detail.name, item.brand)}"
                   alt=""
                 />
               </div>
@@ -252,7 +195,7 @@ async function generateSimilarProduct(element, d) {
                   >${sliceName(String(item.title))} ...</label
                 >
                  <div class="review">  
-              ${generateReview(item.rating) === "" ? `<i class="fa-solid fa-star-half"></i>` : generateReview(item.rating)}
+              ${generateReview(item.ratings) === "" ? `<i class="fa-solid fa-star-half"></i>` : generateReview(item.ratings)}
                 </div>
                 <div class="price-wrapper">
                                                  <label class="price" for="">${convertCurency(item.price.current, item.price.currency, "")}</label>
@@ -329,20 +272,17 @@ async function rateUs(id) {
         const number = item.id.slice(item.id.length - 1, item.id.length);
         const accessToken = localStorage.getItem(`accessToken`);
         console.log(accessToken);
-        const response = await fetch(
-          `https://api.everrest.educata.dev/shop/products/rate`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${accessToken}`,
-            },
-            body: JSON.stringify({
-              productId: id,
-              rate: number,
-            }),
+        const response = await fetch(`${API_BASE_URL}}/shop/products/rate`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
           },
-        );
+          body: JSON.stringify({
+            productId: id,
+            rate: number,
+          }),
+        });
         Swal.fire({
           text: "წარმატებით დაემატა შეფასება",
           icon: "success",
@@ -403,9 +343,7 @@ async function changeContentPage(id) {
 }
 
 async function addToCart(productid) {
-  let response = await fetch(
-    ` https://api.everrest.educata.dev/shop/products/id/${productid}`,
-  );
+  let response = await fetch(` ${API_BASE_URL}/shop/products/id/${productid}`);
   let data = await response.json();
 
   const existingProduct = cart.find((item) => item.id === data._id);
@@ -423,7 +361,7 @@ async function addToCart(productid) {
       title: data.title,
       price: data.price.current,
       currency: data.price.currency,
-      image: `../assets/productIMG/${data.category.name}/${data.brand}.png`,
+      image: `../assets/productIMG/${data.category_detail.name}/${data.brand}.png`,
       quantiti: 1,
       stock: data.stock,
     };
@@ -436,16 +374,17 @@ async function addToCart(productid) {
       return;
     }
     const checkVerified = JSON.parse(localStorage.getItem("temp"));
-    if (!checkVerified.verified) {
-      Swal.fire({
-        title: "თქვენი ანგარიში არ არის ვერიპიცირებული",
-        icon: "warning",
-        html: `
-    <a style="text-decoration:none;" href="../auth/account.html" autofocus>დააჭირეთ აქ</a>,
-  `,
-      });
-      return;
-    }
+    //   if (!checkVerified.verified) {
+    //     Swal.fire({
+    //       title: "თქვენი ანგარიში არ არის ვერიპიცირებული",
+    //       icon: "warning",
+    //       html: `
+    //   <a style="text-decoration:none;" href="../auth/account.html" autofocus>დააჭირეთ აქ</a>,
+    // `,
+    //     });
+    //     return;
+    //   }
+    console.log(cartNew);
 
     if (cartNew.stock < 1) {
       Swal.fire({
@@ -467,7 +406,7 @@ async function addToCart(productid) {
 async function saveCart(cartNew) {
   try {
     if (!localStorage.getItem("cart")) {
-      await fetch(`https://api.everrest.educata.dev/shop/cart/product`, {
+      await fetch(`${API_BASE_URL}/shop/cart/product`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -480,20 +419,17 @@ async function saveCart(cartNew) {
       });
       return;
     } else {
-      let response = await fetch(
-        `https://api.everrest.educata.dev/shop/cart/product`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-          body: JSON.stringify({
-            id: cartNew.id,
-            quantity: cartNew.quantiti,
-          }),
+      let response = await fetch(`${API_BASE_URL}/shop/cart/product`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
-      );
+        body: JSON.stringify({
+          id: cartNew.id,
+          quantity: cartNew.quantiti,
+        }),
+      });
     }
     let data = await response.json();
     console.log(data);

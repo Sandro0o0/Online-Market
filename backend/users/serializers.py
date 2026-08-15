@@ -5,7 +5,19 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import PersonalSpace
 
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
 User = get_user_model()
+    
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+
+        data['first_name'] = self.user.username
+        data['email'] = self.user.email
+
+        return data
     
 class PersonalSpaceSerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,8 +54,8 @@ class UserSerializer(serializers.ModelSerializer):
         # personalspacestvis minda calke shenaxva da sheqmna 
         PersonalSpace.objects.create(
             user=user,
-            first_name=validated_data.get('first_name', ''),
-            last_name=validated_data.get('last_name', '')
+            first_name=validated_data.get('first_name'),
+            email=validated_data.get('email')
         )
 
         return user

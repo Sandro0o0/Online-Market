@@ -136,8 +136,9 @@ async function loginUser(username, password) {
     }
 
     const data = await response.json();
-    const accessToken = data.access_token;
-    const refreshToken = data.refresh_token;
+    console.log(data);
+    const accessToken = data.accessToken;
+    const refreshToken = data.refreshToken;
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("refreshToken", refreshToken);
     const decodedPayload = jwt_decode(accessToken);
@@ -235,16 +236,16 @@ async function checkAuthentication() {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        refresh_token: refreshToken,
+        refresh: refreshToken,
       }),
     });
 
     const data = await response.json();
-    console.log(data.access_token);
+    console.log(data);
 
-    localStorage.setItem("accessToken", data.access_token);
+    localStorage.setItem("accessToken", data.access);
 
-    const decoded = jwt_decode(data.access_token);
+    const decoded = jwt_decode(data.access);
     localStorage.setItem("exp", decoded.exp);
     localStorage.setItem("temp", JSON.stringify(decoded));
 
@@ -261,16 +262,16 @@ async function checkAuthentication() {
   if (!exp) return;
 
   if (exp * 1000 < Date.now()) {
-    const response = await fetch(
-      "https://api.everrest.educata.dev/auth/refresh",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem(`accessToken`)}`,
-        },
+    const response = await fetch(`${API_BASE_URL}/auth/refresh`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem(`accessToken`)}`,
       },
-    );
+      body: JSON.stringify({
+        refresh: refreshToken,
+      }),
+    });
 
     localStorage.removeItem("exp");
     localStorage.removeItem("accessToken");
@@ -300,6 +301,7 @@ async function registerUser(name, email, password, confirmPassword) {
       body: JSON.stringify({
         username: name,
         password: password,
+        first_name: name,
         confirm_password: password,
         email: email,
         // age: age,

@@ -1,6 +1,7 @@
+API_BASE_URL = "http://localhost:8000";
+
 // <--------------Inputs---------------------->
 const userName = document.getElementById(`user-name`);
-const userAge = document.getElementById(`user-age`);
 const userEmail = document.getElementById(`user-email`);
 const userpassword = document.getElementById(`user-password`);
 // <--------------Inputs---------------------->
@@ -18,10 +19,26 @@ const verifyMessage = document.getElementById(`verify-message`);
 const verifyIcon = document.getElementById(`icon`);
 const userInfo = JSON.parse(localStorage.getItem("temp"));
 
-console.log(userInfo);
-userName.textContent = `${userInfo.firstName}`;
-userAge.textContent = `${userInfo.age}`;
-userEmail.textContent = `${userInfo.email}`;
+async function fetchUserInfo() {
+  const accessToken = localStorage.getItem("accessToken");
+
+  if (!accessToken) return;
+
+  const response = await fetch(`${API_BASE_URL}/auth/personal`, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  const userData = await response.json();
+  console.log(userData);
+
+  userName.textContent = `${userData.first_name}`;
+  userEmail.textContent = `${userData.email}`;
+  // return userData;
+}
+
+fetchUserInfo();
 
 //  <---------------------BTN-Hendeler---------------------------->
 

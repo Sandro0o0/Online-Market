@@ -29,7 +29,7 @@
     </div>
     <header>
       <div class="header-container">
-        <a href="/index.html">
+        <a href="#">
           <div class="logo-wrapper">
             <img src="../assets/58596977_9391707.png" alt="NOT FOUND!" />
             <h2>SwiftBuy</h2>
@@ -37,14 +37,14 @@
         </a>
         <nav class="navigation">
           <a
-            href="/navigation/navigation.html?page_index=1&page_size=15&price_min=5&price_max=511"
+            href="/navigation/navigation.html?&page=1&price_min=5&price_max=511"
           >
             <div id="navs" class="nav-item btn primary-btn">
               <i class="fa-solid fa-grip"></i>
               <h4>ნავიგაცია</h4>
             </div>
           </a>
-          <div class="search-container">
+          <div id="search-container" class="search-container">
             <i class="fa-solid fa-magnifying-glass"></i>
             <input id="search-bar" placeholder="ძიება" type="text" />
           </div>
@@ -67,11 +67,11 @@
                 </span>
                 <span class="cart-bottom">
                   <span class="total-amount">
-                    <p>ჯამურუ ფასი:</p>
+                    <p>ჯამური ფასი:</p>
                     <p id="cart-total">0$</p>
                   </span>
-                  <a href="../cart/cart.html">
-                    <button class="primary-btn btn">კალათაში გადასვლა</button>
+                  <a href="./cart/cart.html">
+                    <button class="primary-btn btn">კალათაში გადავლა</button>
                   </a>
                 </span>
               </span>
@@ -95,7 +95,12 @@
                   </span>
                   <h2>შესვლა</h2>
                   <span id="login-message"> </span>
-                  <input class="email" type="text" placeholder="ელ. ფოსტა" />
+
+                  <input
+                    class="username"
+                    type="text"
+                    placeholder="მომხმარებლის სახელი"
+                  />
                   <input
                     class="password"
                     type="password"
@@ -108,6 +113,7 @@
                   <button class="primary-btn btn">შესვლა</button>
                 </form>
               </span>
+              <!--  -->
               <span id="forget-tab" class="forget-tab">
                 <form id="forget-form" class="" action="">
                   <h2>დაგავიწყდა პაროლი</h2>
@@ -124,6 +130,8 @@
                   </button>
                 </form>
               </span>
+
+              <!--  -->
               <span class="register register-model">
                 <form class="register-form" action="">
                   <span class="switch-forms-container">
@@ -143,35 +151,41 @@
                     type="text"
                     placeholder="სახელი"
                   />
-                  <input required class="age" type="text" placeholder="ასაკი" />
+                  <!-- <input required class="age" type="text" placeholder="ასაკი" /> -->
                   <input
                     required
                     class="email"
                     type="email"
                     placeholder="ელ. ფოსტა"
                   />
-                  <input
+                  <!-- <input
                     required
                     class="phone"
                     type="tel"
                     placeholder="ელ. ტელეფონი"
-                  />
+                  /> -->
                   <input
                     required
                     class="password"
                     type="password"
                     placeholder="პაროლი"
                   />
-
+                  <input
+                    required
+                    class="confirm-password"
+                    type="password"
+                    placeholder="გაიმეორეთ პაროლი"
+                  />
                   <button class="primary-btn btn">რეგისტრაცია</button>
                 </form>
               </span>
             </div>
           </div>
+
           <a
             id="account-container"
             class="account-container"
-            href="../auth/account.html"
+            href="./auth/account.html"
           >
             <div>
               <h2 id="account-name-input">S</h2>

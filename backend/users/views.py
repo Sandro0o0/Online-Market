@@ -3,14 +3,18 @@ from rest_framework import status, generics
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate, logout
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import UserSerializer, LoginSerializer, PersonalSpaceSerializer
+from .serializers import CustomTokenObtainPairSerializer, UserSerializer, LoginSerializer, PersonalSpaceSerializer
 from .models import PersonalSpace
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics, status
 from rest_framework.response import Response
 from django.contrib.auth import get_user_model
+from rest_framework_simplejwt.views import TokenObtainPairView
+    
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
 
-
+    
 # roca registracias gaivli pirdapir chaitvalo daloginebulad 
 # roca regostracias gaivli, geubneba rom warmatebit daregistrirdi da shemdeg unda gadaxvide login-idan sistemashi 
 User = get_user_model()

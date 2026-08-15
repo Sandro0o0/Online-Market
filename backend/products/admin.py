@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Price
+from .models import Price, Ratings
 from .models import Product
 # Register your models here.
 
@@ -7,4 +7,4 @@ from .models import Product
 
 admin.site.register(Product)
 admin.site.register(Price)
-
+admin.site.register(Ratings)

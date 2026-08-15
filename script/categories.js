@@ -1,8 +1,8 @@
 let categoriesElement = document.getElementById(`categories-item-wrapper`);
-const apiURL = "https://api.everrest.educata.dev";
+// const apiURL = "https://api.everrest.educata.dev";
 
 async function addCategorie() {
-  let response = await fetch(`${apiURL}/shop/products/brands`);
+  let response = await fetch(`${API_BASE_URL}/shop/products/brands`);
   if (!response.ok) {
     console.error(`eror`);
   }
@@ -26,7 +26,7 @@ async function addCategorie() {
 // console.log("raw");
 function changeWindow(brand) {
   console.log(brand);
-  window.location.href = `../navigation/navigation.html?page_index=1&page_size=15&brand=${brand}`;
+  window.location.href = `../navigation/navigation.html?&page&brand=${brand}`;
 }
 // changeWindow("asus");
 

@@ -18,12 +18,24 @@ from xml.etree.ElementInclude import include
 
 from django.contrib import admin
 from django.urls import path, include
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+
+
     path("api-auth/", include("rest_framework.urls")),
-    path('', include('category.urls')), 
-    path('', include('products.urls')), 
+    path('shop/products/', include('category.urls')), 
+    path('shop/products/', include('products.urls')),
+    path('shop/products/', include('brands.urls')),
+    path('shop/cart/', include('cart.urls')),
     path('auth/', include('users.urls')),
 ]
+
+# http://127.0.0.1:8000/api/docs/

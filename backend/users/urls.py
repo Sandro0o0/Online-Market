@@ -7,6 +7,7 @@ urlpatterns = [
     path('sign_up', RegisterView.as_view(), name='register'),
     path('sign_in', LoginView.as_view(), name='login'), 
     path('sign_out', LogoutView.as_view(), name='logout'),
+    path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('refresh', TokenRefreshView.as_view(), name='token_obtain_pair'), # token ganaxlebistvis 
     path('personal', PersonalSpaceView.as_view(), name='personal-space'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

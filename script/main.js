@@ -41,19 +41,16 @@ async function removeProduct(d) {
     cart.splice(index, 1);
   }
 
-  let response = await fetch(
-    `https://api.everrest.educata.dev/shop/cart/product`,
-    {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify({
-        id: d,
-      }),
+  let response = await fetch(`${API_BASE_URL}/shop/cart/product`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     },
-  );
+    body: JSON.stringify({
+      id: d,
+    }),
+  });
   if (window.location.pathname === `/cart/cart.html`) {
     const cartBody = document.getElementById(`cart-body-container`);
     console.log(cartBody);
@@ -74,20 +71,17 @@ async function increament(d) {
   found.quantiti++;
 
   console.log(found);
-  let response = await fetch(
-    `https://api.everrest.educata.dev/shop/cart/product`,
-    {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify({
-        id: d,
-        quantity: found.quantiti,
-      }),
+  let response = await fetch(`${API_BASE_URL}/shop/cart/product`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     },
-  );
+    body: JSON.stringify({
+      id: d,
+      quantity: found.quantiti,
+    }),
+  });
   if (window.location.pathname === `/cart/cart.html`) {
     const cartBody = document.getElementById(`cart-body-container`);
     console.log(cartBody);
@@ -107,20 +101,17 @@ async function decreament(d) {
   } else {
     found.quantiti--;
 
-    let response = await fetch(
-      `https://api.everrest.educata.dev/shop/cart/product`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-        body: JSON.stringify({
-          id: d,
-          quantity: found.quantiti,
-        }),
+    let response = await fetch(`${API_BASE_URL}/shop/cart/product`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
-    );
+      body: JSON.stringify({
+        id: d,
+        quantity: found.quantiti,
+      }),
+    });
 
     if (window.location.pathname === `/cart/cart.html`) {
       const cartBody = document.getElementById(`cart-body-container`);
@@ -218,7 +209,7 @@ function convertCurency(price, currency, discount) {
 async function updateCartPage() {
   try {
     const accessToken = localStorage.getItem(`accessToken`);
-    const response = await fetch(`https://api.everrest.educata.dev/shop/cart`, {
+    const response = await fetch(`${API_BASE_URL}/shop/cart/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -230,7 +221,9 @@ async function updateCartPage() {
       return;
     }
 
+    localStorage.setItem(`cart`, JSON.stringify(cart));
     let data = await response.json();
+    console.log(data);
     const itemCountElement = document.getElementById(`product-amount`);
     itemCountElement.innerHTML = `შენს კალათაში არის ${data.total.products} ნივთი`;
     getTotal();
@@ -238,3 +231,5 @@ async function updateCartPage() {
     console.error(error);
   }
 }
+// updateCartPage(cart);
+// localStorage.setItem(`cart`, JSON.stringify(cart));

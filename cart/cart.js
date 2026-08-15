@@ -1,3 +1,5 @@
+const API_BASE_URL = "http://localhost:8000/";
+
 const itemCountElement = document.getElementById(`product-amount`);
 const cartBody = document.getElementById(`cart-body-container`);
 
@@ -10,7 +12,7 @@ const clearCartElement = document.getElementById(`clear-cart-container`);
 clearCartElement.addEventListener("click", async () => {
   const accessToken = localStorage.getItem(`accessToken`);
 
-  const response = await fetch(`https://api.everrest.educata.dev/shop/cart`, {
+  const response = await fetch(`${API_BASE_URL}/shop/cart`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -24,19 +26,16 @@ clearCartElement.addEventListener("click", async () => {
   const itemCountElement = document.getElementById(`product-amount`);
   itemCountElement.innerHTML = `შენს კალათაში არის 0 ნივთი`;
   for (let products of data.products) {
-    let request = await fetch(
-      `https://api.everrest.educata.dev/shop/cart/product`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-        body: JSON.stringify({
-          id: products.productId,
-        }),
+    let request = await fetch(`${API_BASE_URL}/shop/cart/product`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
-    );
+      body: JSON.stringify({
+        id: products.productId,
+      }),
+    });
   }
   getTotal();
   // return;
@@ -55,7 +54,7 @@ async function generateCartitems() {
   cartBody.innerHTML = ``;
 
   const accessToken = localStorage.getItem(`accessToken`);
-  const response = await fetch(`https://api.everrest.educata.dev/shop/cart`, {
+  const response = await fetch(`${API_BASE_URL}/shop/cart`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -74,15 +73,12 @@ async function generateCartitems() {
 
   for (let i of data.products) {
     const productId = i.productId;
-    const resp = await fetch(
-      `https://api.everrest.educata.dev/shop/products/id/${productId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Typee": "application/json",
-        },
+    const resp = await fetch(`${API_BASE_URL}/shop/products/id/${productId}`, {
+      method: "GET",
+      headers: {
+        "Content-Typee": "application/json",
       },
-    );
+    });
     let dt = await resp.json();
     console.log(dt);
     cartBody.innerHTML += `
@@ -126,7 +122,7 @@ async function generateCartitems() {
 
 window.addEventListener("DOMContentLoaded", async () => {
   const accessToken = localStorage.getItem(`accessToken`);
-  const response = await fetch(`https://api.everrest.educata.dev/shop/cart`, {
+  const response = await fetch(`${API_BASE_URL}/shop/cart`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -236,16 +232,13 @@ async function checkOut() {
       icon: "info",
     });
 
-    const response = await fetch(
-      "https://api.everrest.educata.dev/shop/cart/checkout",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
+    const response = await fetch("${}/shop/cart/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
       },
-    );
+    });
 
     if (!response.ok) {
       throw new Error(`Checkout failed: ${response.status}`);

@@ -38,12 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'drf_spectacular',
     'rest_framework_simplejwt',
     'corsheaders',
     'category',
     'app',
     'users',
+    "brands",
     'products',
+    "cart",
+
 ]
 
 MIDDLEWARE = [
@@ -114,8 +118,8 @@ REST_FRAMEWORK = {
 
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'PAGE_SIZE': 10,  # number of items per page
-    
 
 }
 CORS_ALLOWED_ORIGINS = [
@@ -146,6 +150,15 @@ CORS_ALLOW_HEADERS = (
     "x-csrftoken",
     "x-requested-with",
 )
+
+
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Online-Market API',
+    'DESCRIPTION': 'API for the Online-Market project',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/

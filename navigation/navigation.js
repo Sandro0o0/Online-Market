@@ -20,6 +20,8 @@
 // 5,
 // rangeInput.value,
 
+API_BASE_URL = "http://localhost:8000";
+
 //api.everrest.educata.dev/shop/products/search?page_index=1&page_size=2&keywords=3&category_id=4&brand=5&rating=5&price_min=7&price_max=7
 const navigateMenu = document.getElementById(`navigate-menu`);
 const sideBar = document.getElementById(`sidebar`);
@@ -46,7 +48,7 @@ function fillterByUrl() {
   // GET Seatch Params------------------->
   let param = new URLSearchParams(window.location.search);
   let pageIndex = param.get("page_index") || "";
-  let pageSize = param.get("page_size") || "";
+  let pageSize = param.get("page_size") || param.get("page") || "";
   let pageInput = param.get("keywords") || "";
   let categoryId = param.get("category_id") || "";
   let pageBrand = param.get("brand") || "";
@@ -162,7 +164,7 @@ function applyFilters() {
 
   changeURl(
     currentPage,
-    pageSize,
+    currentPage,
     searchInput.value,
     category,
     brandsInput.value,
@@ -183,7 +185,7 @@ async function changeOnFillter(
   pricemax,
 ) {
   const response = await fetch(
-    `https://api.everrest.educata.dev/shop/products/search?${index ? `page_index=${index}` : ""}&${size ? `&page_size=${size}` : ""}&${keys ? `&keywords=${keys}` : ""}&${category ? `&category_id=${category}` : ""}&${brand ? `&brand=${brand}` : ""}&${rating ? `&rating=${rating}` : ""}&${pricemin ? `&price_min=${pricemin}` : ""}&${pricemax ? `&price_max=${Math.round(pricemax / 2.66)}` : ""}`,
+    `${API_BASE_URL}/shop/products/search?${index ? `page_index=${index}` : ""}&${size ? `&page=${size}` : ""}&${keys ? `&keywords=${keys}` : ""}&${category ? `&category_id=${category}` : ""}&${brand ? `&brand=${brand}` : ""}&${rating ? `&rating=${rating}` : ""}&${pricemin ? `&price_min=${pricemin}` : ""}&${pricemax ? `&price_max=${Math.round(pricemax / 2.66)}` : ""}`,
   );
 
   currentData = await response.json();
@@ -203,7 +205,7 @@ async function changeURl(
   //   `https://api.everrest.educata.dev/shop/products/search?${index ? `page_index=${index}` : ""}&${size ? `&page_size=${size}` : ""}&${keys ? `&keywords=${keys}` : ""}&${category ? `&category_id=${category}` : ""}&${brand ? `&brand=${brand}` : ""}&${rating ? `&rating=${rating}` : ""}&${pricemin ? `&price_min=${pricemin}` : ""}&${pricemax ? `&price_max=${pricemax}` : ""}`,
   // );
 
-  window.location.href = `?${index ? `page_index=${index}` : ""}${size ? `&page_size=${size}` : ""}${keys ? `&keywords=${keys}` : ""}${category ? `&category_id=${category}` : ""}${brand ? `&brand=${brand}` : ""}${rating ? `&rating=${rating}` : ""}${pricemin ? `&price_min=${pricemin}` : ""}${pricemax ? `&price_max=${pricemax}` : ""}`;
+  window.location.href = `?${index ? `page_index=${index}` : ""}${size ? `&page=${size}` : ""}${keys ? `&keywords=${keys}` : ""}${category ? `&category_id=${category}` : ""}${brand ? `&brand=${brand}` : ""}${rating ? `&rating=${rating}` : ""}${pricemin ? `&price_min=${pricemin}` : ""}${pricemax ? `&price_max=${pricemax}` : ""}`;
 
   // currentData = await response.json();
   // renderProducts(currentData);
@@ -217,7 +219,7 @@ function renderProducts(data) {
     fillterItemContainer.innerHTML += `
       <div id="${element._id}"  class="carousel-item">
         <div class="image-wrapper">
-          <img src="../assets/productIMG/${element.category.name}/${element.brand}.png" />
+          <img src="../assets/productIMG/${element.category_detail.name}/${element.brand}.png" />
         </div>
 
         <div class="content">
@@ -235,7 +237,7 @@ function renderProducts(data) {
           <label>${element.title.slice(0, 20)}...</label>
 
           <div class="review">
-            ${generateReview(element.rating)}
+            ${generateReview(element.ratings)}
           </div>
 
           <div class="button-wrapper">
@@ -276,9 +278,7 @@ function loadProductPage(id) {
 }
 
 async function addToCart(productid) {
-  const response = await fetch(
-    `https://api.everrest.educata.dev/shop/products/id/${productid}`,
-  );
+  const response = await fetch(`${API_BASE_URL}/shop/products/id/${productid}`);
 
   const data = await response.json();
   console.log(cart);

@@ -10,4 +10,4 @@ class PersonalSpace(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"Personal Space of {self.user.user}"
+        return f"Personal Space of {self.user.username}"

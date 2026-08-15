@@ -1,5 +1,8 @@
+// API_BASE_URL = "http://localhost:8000";
+
 let product = [];
 let categories = [];
+
 // let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const cardSection = document.getElementById(`product-cards`);
@@ -30,7 +33,7 @@ function addProductClickHandlers(container) {
             price: correctProd.price.current,
             currency: correctProd.price.currency,
             stock: correctProd.stock,
-            image: `../assets/productIMG/${correctProd.category.name}/${correctProd.brand}.png`,
+            image: `../assets/productIMG/${correctProd.category_detail.name}/${correctProd.brand}.png`,
             quantiti: 1,
           };
 
@@ -65,6 +68,8 @@ function addProductClickHandlers(container) {
           cart.push(cartNew);
           saveCart(cartNew);
           updateCart(cart);
+
+          console.log(cartNew);
           // updateCart(cart);
 
           console.log(cart);
@@ -84,9 +89,10 @@ function addProductClickHandlers(container) {
 }
 
 async function saveCart(cartNew) {
+  console.log(cartNew);
   try {
     if (!localStorage.getItem("cart")) {
-      await fetch(`https://api.everrest.educata.dev/shop/cart/product`, {
+      await fetch(`${API_BASE_URL}/shop/cart/product`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -99,20 +105,17 @@ async function saveCart(cartNew) {
       });
       return;
     } else {
-      let response = await fetch(
-        `https://api.everrest.educata.dev/shop/cart/product`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-          body: JSON.stringify({
-            id: cartNew.id,
-            quantity: cartNew.quantiti,
-          }),
+      let response = await fetch(`${API_BASE_URL}/shop/cart/product`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
-      );
+        body: JSON.stringify({
+          id: cartNew.id,
+          quantity: cartNew.quantiti,
+        }),
+      });
     }
     console.log(cart);
     let data = await response.json();
@@ -130,10 +133,10 @@ async function changeContentPage(id) {
 
 async function uploadBestSale(element) {
   try {
-    const response = await fetch(
-      `https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=38`,
-    );
-    const data = await response.json();
+    const response = await fetch(`${API_BASE_URL}/shop/products/all/`);
+    let data = await response.json();
+    // data = data[0];
+    console.log(data);
 
     product = data;
 
@@ -148,7 +151,7 @@ async function uploadBestSale(element) {
         <div id="${item._id}" class="carousel-item">
               <div class="image-wrapper">
                 <img
-                  src= "${imageSeperator(item.category.name, item.brand)}"
+                  src= "${imageSeperator(item.category_detail.name, item.brand)}"
                   alt=""
                 />
               </div>
@@ -163,7 +166,7 @@ async function uploadBestSale(element) {
                   >${sliceName(String(item.title))} ...</label
                 >
                  <div class="review">  
-              ${generateReview(item.rating) === "" ? `<i class="fa-solid fa-star-half"></i>` : generateReview(item.rating)}
+              ${generateReview(item.ratings) === "" ? `<i class="fa-solid fa-star-half"></i>` : generateReview(item.ratings)}
                 </div>
                 <div class="button-wrapper">
                   <button class="add-to-cart-btn">
@@ -213,13 +216,11 @@ async function uploadBestSale(element) {
 // localStorage.clear();
 
 async function uploadCategory(element, Name) {
-  let response = await fetch(
-    `https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=38`,
-  );
+  let response = await fetch(`${API_BASE_URL}/shop/products/all?page=1`);
   let data = await response.json();
 
   let fillterBycategory = data.products.filter(
-    (category) => category.category.name === `${Name}`,
+    (category) => category.category_detail.name === `${Name}`,
   );
 
   element.innerHTML = ``;
@@ -229,7 +230,7 @@ async function uploadCategory(element, Name) {
         <div id="${item._id}" class="carousel-item">
               <div class="image-wrapper">
                 <img
-                  src= "${imageSeperator(item.category.name, item.brand)}"
+                  src= "${imageSeperator(item.category_detail.name, item.brand)}"
                   alt=""
                 />
               </div>
@@ -243,7 +244,7 @@ async function uploadCategory(element, Name) {
                   >${sliceName(String(item.title))} ...</label
                 >
                  <div class="review">  
-              ${generateReview(item.rating) === "" ? `<i class="fa-solid fa-star-half"></i>` : generateReview(item.rating)}
+              ${generateReview(item.ratings) === "" ? `<i class="fa-solid fa-star-half"></i>` : generateReview(item.ratings)}
                 </div>
                 <div class="button-wrapper">
                   <button class="add-to-cart-btn">
@@ -300,24 +301,19 @@ async function uploadCategory(element, Name) {
 
 async function uploadByFilter(element, Name, index) {
   let response = await fetch(
-    `https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=38`,
+    `${API_BASE_URL}/shop/products/search?page=1&category_id=${Name === "laptops" ? 1 : 2}`,
   );
   let data = await response.json();
 
-  let fillterByCategoryDiscount = data.products.filter(
-    (category) =>
-      category.category.name === `${Name}` &&
-      category.price.current === category.price.beforeDiscount,
-  );
-
   element.innerHTML = ``;
 
-  for (let item of fillterByCategoryDiscount) {
+  for (let item of data.products) {
+    console.log(item);
     element.innerHTML += `
         <div id="${item._id}" class="carousel-item">
               <div class="image-wrapper">
                 <img
-                  src= "${imageSeperator(item.category.name, item.brand)}"
+                  src= "${imageSeperator(item.category_detail.name, item.brand)}"
                   alt=""
                 />
               </div>
@@ -331,7 +327,7 @@ async function uploadByFilter(element, Name, index) {
                   >${sliceName(String(item.title))} ...</label
                 >
                  <div class="review">  
-              ${generateReview(item.rating) === "" ? `<i class="fa-solid fa-star-half"></i>` : generateReview(item.rating)}
+              ${generateReview(item.ratings) === "" ? `<i class="fa-solid fa-star-half"></i>` : generateReview(item.ratings)}
                 </div>
                 <div class="button-wrapper">
                   <button class="add-to-cart-btn">
@@ -345,7 +341,6 @@ async function uploadByFilter(element, Name, index) {
   }
 
   addProductClickHandlers(element);
-
   let productCategoryName;
   let productItems = Array.from(element.querySelectorAll(`.carousel-item`));
 
@@ -394,14 +389,12 @@ async function uploadByFilter(element, Name, index) {
 }
 
 async function uploadByFilterBestSale(element, Name, index) {
-  let response = await fetch(
-    `https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=38`,
-  );
+  let response = await fetch(`${API_BASE_URL}/shop/products/all?page=1`);
   let data = await response.json();
 
   let fillterByCategoryDiscount = data.products.filter(
     (category) =>
-      category.category.name === `${Name}` &&
+      category.category_detail.name === `${Name}` &&
       category.price.current !== category.price.beforeDiscount,
   );
 
@@ -412,7 +405,7 @@ async function uploadByFilterBestSale(element, Name, index) {
         <div id="${item._id}" class="carousel-item">
               <div class="image-wrapper">
                 <img
-                  src= "${imageSeperator(item.category.name, item.brand)}"
+                  src= "${imageSeperator(item.category_detail.name, item.brand)}"
                   alt=""
                 />
               </div>
@@ -426,7 +419,7 @@ async function uploadByFilterBestSale(element, Name, index) {
                   >${sliceName(String(item.title))} ...</label
                 >
                 <div class="review">  
-              ${generateReview(item.rating) === "" ? `<i class="fa-solid fa-star-half"></i>` : generateReview(item.rating)}
+              ${generateReview(item.ratings) === "" ? `<i class="fa-solid fa-star-half"></i>` : generateReview(item.ratings)}
                 </div>
                 <div class="button-wrapper">
                   <button class="add-to-cart-btn">
