@@ -57,6 +57,7 @@ class ProductSerializer(serializers.ModelSerializer):
         queryset=Category.objects.all(),
         write_only=True
     )
+    
     category_detail = CategorySerializer(source='category', read_only=True)
 
     brand = serializers.SlugRelatedField(
@@ -79,7 +80,6 @@ class ProductSerializer(serializers.ModelSerializer):
             price = Price.objects.create(**price_data)
         else:
             price = None
-
         rates_data = validated_data.pop('rates', None)
 
         # brand is already resolved by SlugRelatedField
